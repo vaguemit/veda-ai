@@ -597,7 +597,6 @@ html, body {
 .assignment-card:hover {
   box-shadow: var(--shadow-md);
   border-color: #D0D0D0;
-  transform: translateY(-2px);
 }
 
 .card-top-row {
@@ -646,12 +645,12 @@ html, body {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   padding: 4px 0;
-  min-width: 140px;
-  z-index: 100;
+  min-width: 150px;
+  z-index: 9999;
 }
 
 .dropdown-item {

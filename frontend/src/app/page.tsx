@@ -441,7 +441,7 @@ export default function Home() {
                   style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#6B6B6B', fontSize: '13.5px', fontWeight: '500' }}
                 >
                   <ArrowLeft size={16} />
-                  <Sparkles size={14} style={{ color: '#E8470A' }} />
+                  <Sparkles size={14} style={{ color: '#9B9B9B' }} />
                   <span>Create New</span>
                 </button>
               ) : (

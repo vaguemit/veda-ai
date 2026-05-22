@@ -1438,6 +1438,7 @@ html, body {
     flex-direction: column;
   }
 
+
   .question-config-row {
     grid-template-columns: 1fr 100px 100px 36px;
     gap: 8px;
@@ -1447,3 +1448,435 @@ html, body {
     padding: 24px 20px;
   }
 }
+
+/* ===== FIGMA CREATE FORM LAYOUT ===== */
+
+.create-form-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  gap: 0;
+}
+
+.create-form-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  flex: 1;
+}
+
+/* Progress bar at top of form card */
+.form-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.form-progress-fill {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-light));
+  border-radius: 99px;
+}
+
+/* Large centered upload zone */
+.upload-zone-large {
+  border: 2px dashed #D0D0D0;
+  border-radius: var(--radius-lg);
+  background: var(--bg-hover);
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  min-height: 160px;
+}
+
+.upload-zone-large:hover,
+.upload-zone-large.drag-over {
+  border-color: var(--brand-primary);
+  background: var(--brand-secondary);
+}
+
+.upload-cloud-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.browse-files-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 18px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 4px;
+}
+
+.browse-files-btn:hover {
+  border-color: #C0C0C0;
+  background: var(--bg-hover);
+}
+
+.file-pill-large {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.upload-hint-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* Figma question config rows */
+.qconfig-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 4px 10px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 4px;
+}
+
+.qconfig-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.qconfig-row-figma {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Dropdown wrapper with X button */
+.qtype-select-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.qtype-select-dropdown {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.qtype-x-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-left: 1px solid var(--border);
+  background: var(--bg-hover);
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.qtype-x-btn:hover {
+  background: #FFF0F0;
+  color: var(--status-error);
+}
+
+/* Figma-style counter pills */
+.qty-counter-figma {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.counter-btn-figma {
+  width: 32px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: var(--bg-hover);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.counter-btn-figma:hover {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.counter-val-figma {
+  flex: 1;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 8px 4px;
+}
+
+/* Add Question Type pill with hidden select overlay */
+.add-qtype-figma {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.add-qtype-select-hidden {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 14px;
+}
+
+.add-qtype-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 6px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.add-qtype-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.add-qtype-pill span {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Totals right aligned */
+.form-totals-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.form-totals-right strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* Previous / Next bottom footer navigation */
+.create-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 4px;
+  gap: 16px;
+}
+
+.btn-footer-prev {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-xl);
+  background: var(--white);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-footer-prev:hover {
+  background: var(--bg-hover);
+  border-color: #C0C0C0;
+}
+
+.btn-footer-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--radius-xl);
+  background: var(--text-primary);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.btn-footer-next:hover {
+  background: #333;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
+
+.btn-footer-next:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== AI OUTPUT BANNER (Figma dark banner) ===== */
+.ai-output-banner {
+  background: #1A1A1A;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ai-banner-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #E0E0E0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.ai-banner-text svg {
+  color: var(--brand-primary-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ai-banner-text strong {
+  color: white;
+}
+
+.ai-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.btn-banner-regen {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.12);
+  color: #E0E0E0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-banner-regen:hover {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.btn-banner-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.btn-banner-pdf:hover {
+  background: #F5F5F5;
+  transform: translateY(-1px);
+}
+

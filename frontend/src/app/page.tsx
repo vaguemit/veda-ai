@@ -426,208 +426,227 @@ export default function Home() {
 
           {/* SCREEN 2: ASSIGNMENT CREATION FORM */}
           {currentView === 'create' && (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div className="form-header-container">
-                <h3 className="form-title">Assignment Details</h3>
-                <span className="form-subtitle">Basic information about your assignment</span>
-              </div>
-
-              <div className="form-body">
-                {/* Title */}
-                <div className="form-group">
-                  <label className="form-label" htmlFor="assignment-title">Assignment Title</label>
-                  <input 
-                    id="assignment-title"
-                    type="text" 
-                    placeholder="e.g. Quiz on Electricity" 
-                    className="input-text"
-                    value={formTitle}
-                    onChange={(e) => setFormTitle(e.target.value)}
-                  />
+            <div className="create-form-page">
+              {/* Form card */}
+              <div className="create-form-card">
+                {/* Progress bar at top */}
+                <div className="form-progress-bar">
+                  <div className="form-progress-fill"></div>
                 </div>
 
-                {/* Due Date & Material Upload */}
-                <div className="form-row">
-                  <div className="form-group" style={{ flex: 1 }}>
-                    <label className="form-label" htmlFor="due-date">Due Date</label>
-                    <div className="date-picker-wrapper">
-                      <input 
-                        id="due-date"
-                        type="date" 
-                        className="input-date"
-                        value={formDueDate}
-                        onChange={(e) => setFormDueDate(e.target.value)}
-                      />
-                      <Calendar size={18} className="calendar-icon-btn" />
-                    </div>
+                <div className="form-header-container">
+                  <div>
+                    <h3 className="form-title">Create Assignment</h3>
+                    <span className="form-subtitle">Set up a new assignment for your students</span>
+                  </div>
+                </div>
+
+                {/* Upload Zone - Large Centered (Figma style) */}
+                <div className="form-group">
+                  <div
+                    className={`upload-zone-large ${dragOver ? 'drag-over' : ''}`}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={handleFileChange}
+                      accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png"
+                    />
+                    {formFileName ? (
+                      <div className="file-pill-large" onClick={e => e.stopPropagation()}>
+                        <FileText size={18} />
+                        <span>{formFileName}</span>
+                        <button className="remove-file-btn" onClick={() => setFormFile(null, null)}>
+                          <X size={14} />
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="upload-cloud-icon">
+                          <Upload size={28} />
+                        </div>
+                        <p className="upload-text-primary">Choose a file or drag &amp; drop it here</p>
+                        <p className="upload-text-secondary">JPEG, PNG, upto 10MB</p>
+                        <button
+                          className="browse-files-btn"
+                          onClick={e => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                        >
+                          Browse Files
+                        </button>
+                      </>
+                    )}
+                  </div>
+                  <p className="upload-hint-text">Upload images of your preferred document/image</p>
+                </div>
+
+                {/* Due Date */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor="due-date">Due Date</label>
+                  <div className="date-picker-wrapper">
+                    <input
+                      id="due-date"
+                      type="date"
+                      className="input-date"
+                      value={formDueDate}
+                      onChange={(e) => setFormDueDate(e.target.value)}
+                      placeholder="DD-MM-YYYY"
+                    />
+                    <Calendar size={18} className="calendar-icon-btn" />
+                  </div>
+                </div>
+
+                {/* Question Types Configurator - Figma style */}
+                <div className="form-group">
+                  <div className="qconfig-header-row">
+                    <span className="form-label" style={{ flex: 1 }}>Question Type</span>
+                    <span className="form-label" style={{ width: 130, textAlign: 'center' }}>No. of Questions</span>
+                    <span className="form-label" style={{ width: 100, textAlign: 'center' }}>Marks</span>
+                    <span style={{ width: 32 }}></span>
                   </div>
 
-                  <div className="form-group" style={{ flex: 2 }}>
-                    <label className="form-label">Reference Material (Optional)</label>
-                    <div 
-                      className={`upload-container ${dragOver ? 'drag-over' : ''}`}
-                      onDragOver={handleDragOver}
-                      onDragLeave={handleDragLeave}
-                      onDrop={handleDrop}
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      <input 
-                        type="file" 
-                        ref={fileInputRef}
-                        style={{ display: 'none' }}
-                        onChange={handleFileChange}
-                        accept=".txt,.pdf,.doc,.docx"
-                      />
-                      {formFileName ? (
-                        <div className="file-pill" onClick={(e) => e.stopPropagation()}>
-                          <FileText size={16} />
-                          <span>{formFileName}</span>
-                          <button className="remove-file-btn" onClick={() => setFormFile(null, null)}>
+                  <div className="qconfig-rows">
+                    {formQuestionTypes.map((qConfig) => (
+                      <div key={qConfig.type} className="qconfig-row-figma">
+                        {/* Dropdown selector */}
+                        <div className="qtype-select-wrapper">
+                          <select
+                            className="qtype-select-dropdown"
+                            value={qConfig.type}
+                            onChange={(e) => {
+                              if (e.target.value && e.target.value !== qConfig.type) {
+                                removeQuestionType(qConfig.type);
+                                addQuestionType(e.target.value);
+                              }
+                            }}
+                          >
+                            <option value={qConfig.type}>{qConfig.type}</option>
+                            {availableQuestionTypes
+                              .filter(t => !formQuestionTypes.some(q => q.type === t))
+                              .map(t => (
+                                <option key={t} value={t}>{t}</option>
+                              ))}
+                          </select>
+                          <button
+                            className="qtype-x-btn"
+                            onClick={() => removeQuestionType(qConfig.type)}
+                            title="Remove"
+                          >
                             <X size={14} />
                           </button>
                         </div>
-                      ) : (
-                        <>
-                          <div className="upload-icon-box">
-                            <Upload size={20} />
-                          </div>
-                          <div>
-                            <p className="upload-text-primary">Choose a file or drag & drop it here</p>
-                            <p className="upload-text-secondary">TXT, PDF or Word documents up to 10MB</p>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
 
-                {/* Question Types Configurator */}
-                <div className="form-group question-config-container">
-                  <label className="form-label">Question Configurator</label>
-                  
-                  <div className="question-config-grid">
-                    {/* Table Header */}
-                    <div className="question-config-row" style={{ borderBottom: '1.5px solid #ECECEC' }}>
-                      <span className="question-config-header">Question Type</span>
-                      <span className="question-config-header">No. of Questions</span>
-                      <span className="question-config-header">Marks Per Q</span>
-                      <span className="question-config-header"></span>
-                    </div>
-
-                    {/* Table Rows */}
-                    {formQuestionTypes.map((qConfig) => (
-                      <div key={qConfig.type} className="question-config-row">
-                        <div className="qtype-name-card">
-                          <span>{qConfig.type}</span>
-                        </div>
-                        
-                        {/* Questions count */}
-                        <div className="qty-counter">
-                          <button className="counter-btn" onClick={() => updateQuestionTypeQty(qConfig.type, -1)}>
-                            <Minus size={14} />
+                        {/* Questions counter */}
+                        <div className="qty-counter-figma">
+                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeQty(qConfig.type, -1)}>
+                            <Minus size={13} />
                           </button>
-                          <span className="counter-value">{qConfig.numQuestions}</span>
-                          <button className="counter-btn" onClick={() => updateQuestionTypeQty(qConfig.type, 1)}>
-                            <Plus size={14} />
+                          <span className="counter-val-figma">{qConfig.numQuestions}</span>
+                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeQty(qConfig.type, 1)}>
+                            <Plus size={13} />
                           </button>
                         </div>
 
-                        {/* Marks */}
-                        <div className="qty-counter">
-                          <button className="counter-btn" onClick={() => updateQuestionTypeMarks(qConfig.type, -1)}>
-                            <Minus size={14} />
+                        {/* Marks counter */}
+                        <div className="qty-counter-figma">
+                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeMarks(qConfig.type, -1)}>
+                            <Minus size={13} />
                           </button>
-                          <span className="counter-value">{qConfig.marksPerQuestion}</span>
-                          <button className="counter-btn" onClick={() => updateQuestionTypeMarks(qConfig.type, 1)}>
-                            <Plus size={14} />
+                          <span className="counter-val-figma">{qConfig.marksPerQuestion}</span>
+                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeMarks(qConfig.type, 1)}>
+                            <Plus size={13} />
                           </button>
                         </div>
-
-                        {/* Delete Row button */}
-                        <button className="qtype-delete-btn" onClick={() => removeQuestionType(qConfig.type)}>
-                          <Trash2 size={16} />
-                        </button>
                       </div>
                     ))}
                   </div>
 
-                  {/* Dropdown to add new types */}
+                  {/* Add Question Type pill button */}
                   {formQuestionTypes.length < availableQuestionTypes.length && (
-                    <div className="add-qtype-row">
-                      <select 
-                        className="select-qtype"
+                    <div className="add-qtype-figma">
+                      <select
+                        className="add-qtype-select-hidden"
+                        value=""
                         onChange={(e) => {
                           if (e.target.value) {
                             addQuestionType(e.target.value);
-                            e.target.value = ''; // Reset select
                           }
                         }}
                       >
-                        <option value="">+ Add Question Type...</option>
+                        <option value=""></option>
                         {availableQuestionTypes
                           .filter(t => !formQuestionTypes.some(q => q.type === t))
                           .map(t => (
                             <option key={t} value={t}>{t}</option>
-                          ))
-                        }
+                          ))}
                       </select>
+                      <div className="add-qtype-pill">
+                        <div className="add-qtype-circle">
+                          <Plus size={14} />
+                        </div>
+                        <span>Add Question Type</span>
+                      </div>
                     </div>
                   )}
 
-                  {/* Table Footer Totals */}
-                  <div className="form-totals-summary">
-                    <span>Total Questions: {totalQuestions}</span>
-                    <span>Total Marks: {totalMarks}</span>
+                  {/* Totals - right-aligned */}
+                  <div className="form-totals-right">
+                    <span>Total Questions : <strong>{totalQuestions}</strong></span>
+                    <span>Total Marks : <strong>{totalMarks}</strong></span>
                   </div>
                 </div>
 
-                {/* Additional Guidelines text area */}
+                {/* Additional Info */}
                 <div className="form-group">
-                  <label className="form-label" htmlFor="additional-info">Additional Guidelines (For customized prompt)</label>
+                  <label className="form-label" htmlFor="additional-info">Additional Information (For better output)</label>
                   <div className="textarea-instructions-wrapper">
-                    <textarea 
+                    <textarea
                       id="additional-info"
-                      placeholder="e.g. Generate a question paper for a 3-hour exam duration. Invert options, focus heavily on NCERT Grade 8 chapter 12..."
+                      placeholder="e.g Generate a question paper for a 3 hour exam duration..."
                       className="textarea-instructions"
                       value={formAdditionalInstructions}
                       onChange={(e) => setFormAdditionalInstructions(e.target.value)}
                     />
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       className="textarea-mic-btn"
                       onClick={handleMicClick}
-                      title="Microphone (Autofill speech guideline templates)"
+                      title="Autofill example"
                     >
                       <Mic size={16} />
                     </button>
                   </div>
                 </div>
+              </div>
 
-                {/* Wizard actions */}
-                <div className="form-actions-footer">
-                  <button 
-                    className="btn-secondary" 
-                    onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
-                  >
-                    Cancel
-                  </button>
-                  <button 
-                    className="btn-primary" 
-                    onClick={submitAssignment}
-                    disabled={formSubmitting}
-                  >
-                    {formSubmitting ? 'Submitting...' : 'Generate Questions'}
-                    <Sparkles size={16} />
-                  </button>
-                </div>
+              {/* Previous / Next bottom navigation */}
+              <div className="create-form-footer">
+                <button
+                  className="btn-footer-prev"
+                  onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
+                >
+                  ← Previous
+                </button>
+                <button
+                  className="btn-footer-next"
+                  onClick={submitAssignment}
+                  disabled={formSubmitting}
+                >
+                  {formSubmitting ? 'Generating...' : 'Next →'}
+                </button>
               </div>
             </div>
           )}
 
+
           {/* SCREEN 3: EXAM PAPER OUTPUT VIEW */}
           {currentView === 'output' && selectedAssignment && (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
-              
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, position: 'relative' }}>
+
               {/* REALTIME WS GENERATION PROGRESS LOADER OVERLAY */}
               {(selectedAssignment.status === 'processing' || selectedAssignment.status === 'pending') && (
                 <div className="generation-loading-overlay">
@@ -641,8 +660,8 @@ export default function Home() {
                     </div>
 
                     <div className="loader-bar-bg">
-                      <div 
-                        className="loader-bar-fill" 
+                      <div
+                        className="loader-bar-fill"
                         style={{ width: `${generationProgress?.progress || 10}%` }}
                       ></div>
                     </div>
@@ -670,16 +689,8 @@ export default function Home() {
                     </div>
 
                     <div style={{ display: 'flex', gap: 12, width: '100%', justifyContent: 'center' }}>
-                      <button 
-                        className="btn-secondary" 
-                        onClick={() => setView('list')}
-                      >
-                        Back to List
-                      </button>
-                      <button 
-                        className="btn-primary" 
-                        onClick={() => regenerateAssignment(selectedAssignment._id)}
-                      >
+                      <button className="btn-secondary" onClick={() => setView('list')}>Back to List</button>
+                      <button className="btn-primary" onClick={() => regenerateAssignment(selectedAssignment._id)}>
                         <RefreshCw size={14} />
                         <span>Retry Generation</span>
                       </button>
@@ -688,22 +699,23 @@ export default function Home() {
                 </div>
               )}
 
-              {/* SUCCESSFUL COMPLETED QUESTION PAPER SHEET VIEW */}
+              {/* COMPLETED - Dark AI Banner + Paper Sheet */}
               {selectedAssignment.status === 'completed' && selectedAssignment.paper && (
                 <>
-                  {/* Top Control Bar */}
-                  <div className="output-control-bar">
-                    <div className="output-title-section">
-                      <h3 className="list-view-title">{selectedAssignment.title}</h3>
-                      <span className="list-view-subtitle">AI Generated paper matching standard school test format</span>
+                  {/* Dark AI banner matching Figma */}
+                  <div className="ai-output-banner">
+                    <div className="ai-banner-text">
+                      <Sparkles size={16} style={{ flexShrink: 0, marginTop: 2 }} />
+                      <span>
+                        Here is your AI-generated question paper for <strong>{selectedAssignment.title}</strong>. 
+                        Review the paper below and download as PDF when ready.
+                      </span>
                     </div>
-
-                    <div className="paper-actions-group">
-                      {/* Regenerate Action button */}
-                      <button 
-                        className="btn-secondary"
+                    <div className="ai-banner-actions">
+                      <button
+                        className="btn-banner-regen"
                         onClick={() => {
-                          if (confirm('Are you sure you want to regenerate this assignment? This will rewrite current questions.')) {
+                          if (confirm('Regenerate this assignment? Current questions will be replaced.')) {
                             regenerateAssignment(selectedAssignment._id);
                           }
                         }}
@@ -711,15 +723,16 @@ export default function Home() {
                         <RefreshCw size={14} />
                         <span>Regenerate</span>
                       </button>
-
-                      {/* Download PDF Action button */}
-                      <a 
+                      <a
                         href={`http://localhost:5000/api/assignments/${selectedAssignment._id}/pdf`}
                         download
-                        className="btn-primary"
-                        style={{ textDecoration: 'none' }}
+                        className="btn-banner-pdf"
                       >
                         <Download size={14} />
+                        <span>Download as PDF</span>
+                      </a>
+                    </div>
+                  </div>
                         <span>Download as PDF</span>
                       </a>
                     </div>

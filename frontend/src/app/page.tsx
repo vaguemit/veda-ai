@@ -851,19 +851,10 @@ export default function Home() {
                     </p>
 
                     {/* Student Info lines */}
-                    <div className="paper-student-info">
-                      <div className="info-line">
-                        <span>Name:</span>
-                        <input type="text" className="info-blank-input" readOnly placeholder="_________________________________________" />
-                      </div>
-                      <div className="info-line">
-                        <span>Roll Number:</span>
-                        <input type="text" className="info-blank-input" readOnly placeholder="_______________________________" />
-                      </div>
-                      <div className="info-line" style={{ gridColumn: 'span 2' }}>
-                        <span>Class Section:</span>
-                        <input type="text" className="info-blank-input" readOnly placeholder="____________________________________________________________________________________" />
-                      </div>
+                    <div className="paper-student-info" style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', color: '#1A1A1A', margin: '16px 0', borderBottom: 'none', paddingBottom: 0 }}>
+                      <div style={{ fontWeight: '600' }}>Name: ______________________</div>
+                      <div style={{ fontWeight: '600' }}>Roll Number: ______________________</div>
+                      <div style={{ fontWeight: '600' }}>Class: {selectedAssignment.paper.className} Section: ______________________</div>
                     </div>
 
                     {/* Render Sections */}

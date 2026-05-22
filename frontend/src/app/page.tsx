@@ -487,29 +487,51 @@ export default function Home() {
             <div className="empty-state-container">
               {/* Illustrated SVG - magnifying glass with X, matching Figma */}
               <div className="empty-state-illustration">
-                <svg width="180" height="160" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Background circle */}
-                  <circle cx="100" cy="95" r="72" fill="#EEEEF5" />
-                  {/* Document */}
-                  <rect x="62" y="34" width="76" height="96" rx="6" fill="white" stroke="#C8C8D8" strokeWidth="1.5"/>
-                  <rect x="74" y="50" width="40" height="5" rx="2.5" fill="#333" />
-                  <rect x="74" y="62" width="52" height="4" rx="2" fill="#DDDDE8" />
-                  <rect x="74" y="72" width="44" height="4" rx="2" fill="#DDDDE8" />
-                  <rect x="74" y="82" width="48" height="4" rx="2" fill="#DDDDE8" />
-                  <rect x="74" y="92" width="36" height="4" rx="2" fill="#DDDDE8" />
-                  {/* Squiggle line top left */}
-                  <path d="M52 42 Q56 36 60 42 Q64 48 68 42" stroke="#555" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                <svg width="220" height="200" viewBox="0 0 260 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Large background circle */}
+                  <circle cx="125" cy="125" r="90" fill="#F0F0F6" />
+
+                  {/* Squiggle thread — top left */}
+                  <path d="M42 68 C46 54, 52 54, 54 64 C56 74, 62 76, 66 66 C70 56, 76 58, 76 66" stroke="#3A3A50" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
+
+                  {/* Small notification card — top right */}
+                  <rect x="172" y="52" width="48" height="30" rx="6" fill="white" stroke="#E0E0EA" strokeWidth="1.2"/>
+                  <rect x="180" y="60" width="24" height="3" rx="1.5" fill="#C8C8D4" />
+                  <rect x="180" y="67" width="16" height="3" rx="1.5" fill="#DDDDE6" />
+
+                  {/* Document — white paper, slightly tilted */}
+                  <g transform="rotate(-4, 115, 115)">
+                    <rect x="68" y="50" width="94" height="120" rx="10" fill="white" filter="url(#docShadow)"/>
+                    {/* Title bar */}
+                    <rect x="86" y="72" width="48" height="6" rx="3" fill="#2A2A3A" />
+                    {/* Content lines */}
+                    <rect x="86" y="88" width="60" height="4" rx="2" fill="#E8E8F0" />
+                    <rect x="86" y="100" width="52" height="4" rx="2" fill="#E8E8F0" />
+                    <rect x="86" y="112" width="56" height="4" rx="2" fill="#E8E8F0" />
+                    <rect x="86" y="124" width="40" height="4" rx="2" fill="#E8E8F0" />
+                  </g>
+
                   {/* Magnifying glass */}
-                  <circle cx="118" cy="108" r="30" fill="white" stroke="#C8C8D8" strokeWidth="2"/>
-                  <circle cx="118" cy="108" r="22" fill="#EEEEF5" />
-                  {/* X inside magnifying glass */}
-                  <line x1="108" y1="98" x2="128" y2="118" stroke="#E8470A" strokeWidth="5" strokeLinecap="round"/>
-                  <line x1="128" y1="98" x2="108" y2="118" stroke="#E8470A" strokeWidth="5" strokeLinecap="round"/>
+                  <circle cx="152" cy="148" r="36" fill="white" stroke="#C4C4D8" strokeWidth="3"/>
+                  <circle cx="152" cy="148" r="28" fill="#F4F4FA" />
+                  {/* Red X inside */}
+                  <line x1="140" y1="136" x2="164" y2="160" stroke="#E74C3C" strokeWidth="6" strokeLinecap="round"/>
+                  <line x1="164" y1="136" x2="140" y2="160" stroke="#E74C3C" strokeWidth="6" strokeLinecap="round"/>
                   {/* Handle */}
-                  <line x1="140" y1="130" x2="156" y2="148" stroke="#999" strokeWidth="6" strokeLinecap="round"/>
-                  {/* Sparkle dots */}
-                  <path d="M68 130 L70 124 L72 130 L78 132 L72 134 L70 140 L68 134 L62 132 Z" fill="#6C8EEF" opacity="0.7"/>
-                  <circle cx="152" cy="82" r="5" fill="#6C8EEF" opacity="0.6"/>
+                  <line x1="178" y1="174" x2="198" y2="196" stroke="#B0B0BE" strokeWidth="7" strokeLinecap="round"/>
+
+                  {/* Blue sparkle star — bottom left */}
+                  <path d="M52 178 L54.5 170 L57 178 L65 180.5 L57 183 L54.5 191 L52 183 L44 180.5 Z" fill="#6C8EEF" opacity="0.8"/>
+
+                  {/* Blue dot — right */}
+                  <circle cx="212" cy="160" r="5" fill="#3B5998" opacity="0.7"/>
+
+                  {/* Shadow filter for document */}
+                  <defs>
+                    <filter id="docShadow" x="-4" y="-2" width="108" height="132" filterUnits="userSpaceOnUse">
+                      <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#00000010"/>
+                    </filter>
+                  </defs>
                 </svg>
               </div>
 

@@ -433,9 +433,16 @@ export default function Home() {
           {currentView === 'list' && (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div className="list-view-header">
-                <div className="list-view-title-container">
-                  <h3 className="list-view-title">Assignments</h3>
-                  <span className="list-view-subtitle">Manage and create assessments for your classes.</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div className="green-check-dot">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
+                  <div className="list-view-title-container">
+                    <h3 className="list-view-title" style={{ margin: 0 }}>Assignments</h3>
+                    <span className="list-view-subtitle">Manage and create assignments for your classes.</span>
+                  </div>
                 </div>
 
                 <div className="search-filter-container">

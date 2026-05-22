@@ -325,8 +325,16 @@ export default function Home() {
               <ArrowLeft size={16} />
             </button>
             {currentView === 'output' ? (
-              <span className="header-breadcrumb-text" style={{ cursor: 'pointer' }} onClick={() => setView('create')}>
-                + Create New
+              <span 
+                className="header-breadcrumb-text" 
+                style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px' }} 
+                onClick={() => {
+                  resetForm();
+                  setView('create');
+                }}
+              >
+                <Sparkles size={14} style={{ color: 'var(--text-secondary)' }} />
+                Create New
               </span>
             ) : (
               <span className="header-breadcrumb-text">

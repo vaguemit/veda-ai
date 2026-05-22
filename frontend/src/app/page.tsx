@@ -258,7 +258,7 @@ export default function Home() {
           {/* Menu Items */}
           <nav className="sidebar-menu">
             <button 
-              className={`menu-item ${currentView === 'no_assignments' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'no_assignments' || currentView === 'output' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
               <HomeIcon size={20} />

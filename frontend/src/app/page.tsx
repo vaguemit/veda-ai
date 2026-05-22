@@ -39,7 +39,9 @@ import {
   Contact,
   PieChart,
   MoreVertical,
-  Menu
+  Menu,
+  Moon,
+  Sun
 } from 'lucide-react';
 
 // Custom SVGs matching the Figma screenshot exactly
@@ -102,6 +104,15 @@ const PieChartIcon = ({ size = 20 }: { size?: number }) => (
 );
 
 export default function Home() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [isDarkMode]);
   const {
     currentView,
     assignments,
@@ -425,6 +436,13 @@ export default function Home() {
             </div>
 
           <div className="profile-section">
+            <button 
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '8px', borderRadius: '50%' }}
+              title="Toggle Dark Mode"
+            >
+              {isDarkMode ? <Sun size={18} style={{ color: 'var(--text-primary)' }} /> : <Moon size={18} style={{ color: 'var(--text-primary)' }} />}
+            </button>
             <div className="notification-bell">
               <span className="notification-badge"></span>
               <Bell size={18} style={{ color: 'var(--text-primary)' }} />

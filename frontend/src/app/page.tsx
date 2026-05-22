@@ -305,8 +305,8 @@ export default function Home() {
           {/* Menu Items */}
           <nav className="sidebar-menu">
             <button 
-              className={`menu-item ${currentView === 'no_assignments' || currentView === 'output' ? 'active' : ''}`}
-              onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
+              className={`menu-item ${currentView === 'home' ? 'active' : ''}`}
+              onClick={() => setView('home')}
             >
               <HomeIcon size={20} />
               <span>Home</span>
@@ -991,7 +991,7 @@ export default function Home() {
           )}
 
           {/* DUMMY VIEWS FOR SIDEBAR */}
-          {['groups', 'toolkit', 'library', 'settings'].includes(currentView) && (
+          {['home', 'groups', 'toolkit', 'library', 'settings'].includes(currentView) && (
             <div className="empty-state-container" style={{ flexGrow: 1 }}>
               <div className="empty-state-illustration" style={{ opacity: 0.5 }}>
                 <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#C8C8D8" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">

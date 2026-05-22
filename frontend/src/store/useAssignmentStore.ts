@@ -67,7 +67,7 @@ interface IGenerationProgress {
 
 interface AssignmentState {
   // App views: 'no_assignments' (0 state), 'list' (assignments), 'create' (form), 'output' (paper view), plus dummy views
-  currentView: 'no_assignments' | 'list' | 'create' | 'output' | 'groups' | 'toolkit' | 'library' | 'settings';
+  currentView: 'no_assignments' | 'list' | 'create' | 'output' | 'groups' | 'toolkit' | 'library' | 'settings' | 'home';
   assignments: IAssignment[];
   selectedAssignment: IAssignment | null;
   loading: boolean;
@@ -88,7 +88,7 @@ interface AssignmentState {
   formSubmitting: boolean;
 
   // Actions
-  setView: (view: 'no_assignments' | 'list' | 'create' | 'output' | 'groups' | 'toolkit' | 'library' | 'settings') => void;
+  setView: (view: 'no_assignments' | 'list' | 'create' | 'output' | 'groups' | 'toolkit' | 'library' | 'settings' | 'home') => void;
   setSelectedAssignment: (assignment: IAssignment | null) => void;
   fetchAssignments: () => Promise<void>;
   deleteAssignment: (id: string) => Promise<void>;

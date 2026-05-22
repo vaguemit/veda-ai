@@ -268,6 +268,7 @@ html, body {
   flex-direction: column;
   overflow: hidden;
   min-width: 0;
+  position: relative;
 }
 
 /* Top Header - Floating Pill Card */
@@ -1464,29 +1465,30 @@ html, body {
 
 /* ===== FLOATING CREATE BUTTON (bottom of list view) ===== */
 .fab-create-btn {
-  position: fixed;
+  position: absolute;
   bottom: 28px;
-  right: 28px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 13px 20px;
+  padding: 13px 24px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-light));
+  background: #1A1A1A; /* Black background */
   color: white;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(232, 71, 10, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   transition: var(--transition);
   z-index: 50;
 }
 
 .fab-create-btn:hover {
-  box-shadow: 0 6px 24px rgba(232, 71, 10, 0.5);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  transform: translateX(-50%) translateY(-2px);
 }
 
 /* ===== SCROLLBAR ===== */

@@ -806,10 +806,24 @@ html, body {
   width: 100%;
 }
 
-/* Hide native browser calendar icon from date input */
+/* Hide native browser calendar icon and dropdown arrow from date input */
 .input-date::-webkit-calendar-picker-indicator {
-  display: none;
+  display: none !important;
   -webkit-appearance: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.input-date::-webkit-inner-spin-button,
+.input-date::-webkit-clear-button {
+  display: none;
+}
+
+.input-date {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
 }
 
 .input-text:focus,

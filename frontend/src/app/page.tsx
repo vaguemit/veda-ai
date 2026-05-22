@@ -25,6 +25,9 @@ import {
   LayoutDashboard, 
   BookOpenCheck,
   FileCheck,
+  Library,
+  Users,
+  ChevronDown,
   X,
   Sparkles,
   AlertCircle
@@ -208,16 +211,12 @@ export default function Home() {
               <span>Home</span>
             </button>
             <button className="menu-item">
-              <BookOpenCheck size={18} />
+              <Users size={18} />
               <span>My Groups</span>
             </button>
             <button 
-              className={`menu-item ${currentView === 'output' ? 'active' : ''}`}
-              onClick={() => {
-                if (selectedAssignment) setView('output');
-              }}
-              disabled={!selectedAssignment}
-              style={{ opacity: selectedAssignment ? 1 : 0.6 }}
+              className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' || currentView === 'output' ? 'active' : ''}`}
+              onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
               <FileCheck size={18} />
               <span>Assignments</span>
@@ -226,11 +225,21 @@ export default function Home() {
               )}
             </button>
             <button className="menu-item">
-              <Settings size={18} />
-              <span>Settings</span>
+              <BookOpenCheck size={18} />
+              <span>AI Teacher's Toolkit</span>
+            </button>
+            <button className="menu-item">
+              <Library size={18} />
+              <span>My Library</span>
             </button>
           </nav>
         </div>
+
+        {/* Settings link */}
+        <button className="menu-item" style={{ marginBottom: 6 }}>
+          <Settings size={18} />
+          <span>Settings</span>
+        </button>
 
         {/* School Info Footer Card */}
         <div className="school-card">
@@ -270,7 +279,7 @@ export default function Home() {
             <div className="profile-card">
               <div className="profile-avatar">👨‍🏫</div>
               <span className="profile-name">John Doe</span>
-              <span>▼</span>
+              <ChevronDown size={14} style={{ color: 'var(--text-muted)' }} />
             </div>
           </div>
         </header>
@@ -400,6 +409,18 @@ export default function Home() {
                   ))}
                 </div>
               )}
+
+              {/* Floating bottom create button matching Figma */}
+              <button
+                className="fab-create-btn"
+                onClick={() => {
+                  resetForm();
+                  setView('create');
+                }}
+              >
+                <Plus size={18} />
+                <span>Create Assignment</span>
+              </button>
             </div>
           )}
 

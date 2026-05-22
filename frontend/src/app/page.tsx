@@ -930,6 +930,14 @@ export default function Home() {
                       Certainly, Lakshya! Here are customized Question Paper for your CBSE Grade 8 Science classes on the NCERT chapters:
                     </div>
                     <div className="ai-banner-actions">
+                      <button 
+                        className="btn-banner-regen" 
+                        onClick={() => regenerateAssignment(selectedAssignment._id)}
+                        style={{ marginRight: '8px' }}
+                      >
+                        <RefreshCw size={14} />
+                        <span>Regenerate</span>
+                      </button>
                       <a
                         href={`http://localhost:5000/api/assignments/${selectedAssignment._id}/pdf`}
                         download
@@ -987,8 +995,20 @@ export default function Home() {
                         <div className="paper-questions-list">
                           {section.questions.map((q, qIdx) => (
                             <div key={qIdx} className="paper-question-item">
-                              <div className="paper-question-header-row" style={{ display: 'block', fontSize: '13.5px', color: '#1A1A1A', lineHeight: '1.6', marginBottom: 4 }}>
-                                <span style={{ fontWeight: 'normal' }}>{qIdx + 1}. [{q.difficulty}] {q.text} [{q.marks} Mark{q.marks > 1 ? 's' : ''}]</span>
+                              <div className="paper-question-header-row" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px', fontSize: '13.5px', color: 'var(--text-primary)', lineHeight: '1.6', marginBottom: 4 }}>
+                                <span style={{ fontWeight: '500' }}>{qIdx + 1}.</span>
+                                <span style={{ 
+                                  padding: '2px 8px', 
+                                  borderRadius: '4px', 
+                                  fontSize: '11px', 
+                                  fontWeight: '600', 
+                                  backgroundColor: q.difficulty.toLowerCase() === 'easy' ? '#E8F5E9' : q.difficulty.toLowerCase() === 'medium' || q.difficulty.toLowerCase() === 'moderate' ? '#FFF8E1' : '#FFEBEE',
+                                  color: q.difficulty.toLowerCase() === 'easy' ? '#2E7D32' : q.difficulty.toLowerCase() === 'medium' || q.difficulty.toLowerCase() === 'moderate' ? '#F57F17' : '#C62828'
+                                }}>
+                                  {q.difficulty}
+                                </span>
+                                <span style={{ flex: 1 }}>{q.text}</span>
+                                <span style={{ fontWeight: '600', color: 'var(--text-secondary)', fontSize: '12.5px' }}>[{q.marks} Mark{q.marks > 1 ? 's' : ''}]</span>
                               </div>
 
                               {/* Render Options for MCQ */}

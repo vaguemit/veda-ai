@@ -317,17 +317,17 @@ html, body {
 
 .notification-bell {
   position: relative;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
+  border-radius: 50%;
   cursor: pointer;
   font-size: 17px;
   transition: var(--transition);
-  border: 1px solid var(--border);
-  background: var(--white);
+  border: none;
+  background: transparent;
 }
 
 .notification-bell:hover {
@@ -336,8 +336,8 @@ html, body {
 
 .notification-badge {
   position: absolute;
-  top: 6px;
-  right: 7px;
+  top: 4px;
+  right: 4px;
   width: 7px;
   height: 7px;
   background: var(--brand-primary);
@@ -349,12 +349,12 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 10px;
+  padding: 5px 8px;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border);
+  border: none;
   cursor: pointer;
   transition: var(--transition);
-  background: var(--white);
+  background: transparent;
 }
 
 .profile-card:hover {

@@ -121,12 +121,11 @@ html, body {
 .logo-box {
   width: 52px;
   height: 52px;
-  border-radius: 14px;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transform: translateY(4px);
 }
 
 .logo-text {
@@ -2234,12 +2233,11 @@ html, body {
   .mobile-logo-box {
     width: 42px;
     height: 42px;
-    border-radius: 12px;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transform: translateY(2px);
   }
 
   .mobile-logo-text {

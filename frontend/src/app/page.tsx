@@ -333,7 +333,7 @@ export default function Home() {
           {/* Logo */}
           <div className="logo-container">
             <div className="logo-box">
-              <img src="/veda_logo_mobile.png" alt="VedaAI" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+              <img src="/veda_logo_desktop.png" alt="VedaAI" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '14px' }} />
             </div>
             <h1 className="logo-text">VedaAI</h1>
           </div>

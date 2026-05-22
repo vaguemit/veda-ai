@@ -731,6 +731,7 @@ export default function Home() {
                         <Download size={14} />
                         <span>Download as PDF</span>
                       </a>
+                    </div>
                   </div>
 
                   {/* Main realistic printable sheet paper */}

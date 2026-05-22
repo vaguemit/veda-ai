@@ -188,13 +188,13 @@ html, body {
 }
 
 .menu-item.active {
-  background: #FFF3EE;
-  color: var(--brand-primary);
+  background: #ECECEF;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .menu-item.active svg {
-  color: var(--brand-primary);
+  color: var(--text-primary);
 }
 
 .menu-item:disabled {

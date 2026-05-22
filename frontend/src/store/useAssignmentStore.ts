@@ -274,11 +274,23 @@ export const useAssignmentStore = create<AssignmentState>((set, get) => ({
   submitAssignment: async () => {
     const { formTitle, formDueDate, formQuestionTypes, formAdditionalInstructions, formFileName, formFileText } = get();
     
-    // Validations
-    if (!formTitle.trim()) {
-      alert('Please enter a title for the assignment.');
-      return;
+    // Auto-generate title if empty
+    let titleToUse = formTitle.trim();
+    if (!titleToUse) {
+      if (formFileName) {
+        // Remove extension from filename if present
+        titleToUse = formFileName.replace(/\.[^/.]+$/, "");
+      } else {
+        const dateStr = new Date().toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        });
+        titleToUse = `AI Generated Assessment - ${dateStr}`;
+      }
     }
+
+    // Validations
     if (!formDueDate) {
       alert('Please select a due date.');
       return;
@@ -288,7 +300,11 @@ export const useAssignmentStore = create<AssignmentState>((set, get) => ({
       return;
     }
 
-    set({ formSubmitting: true, generationProgress: { status: 'pending', progress: 0, message: 'Submitting assignment creation task...' } });
+    set({ 
+      formTitle: titleToUse,
+      formSubmitting: true, 
+      generationProgress: { status: 'pending', progress: 0, message: 'Submitting assignment creation task...' } 
+    });
 
     try {
       const res = await fetch(`${API_URL}/api/assignments`, {
@@ -297,7 +313,7 @@ export const useAssignmentStore = create<AssignmentState>((set, get) => ({
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          title: formTitle,
+          title: titleToUse,
           dueDate: formDueDate,
           questionTypes: formQuestionTypes,
           additionalInstructions: formAdditionalInstructions,

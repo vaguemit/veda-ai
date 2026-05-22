@@ -80,6 +80,17 @@ const BookIcon = ({ size = 20 }: { size?: number }) => (
   </svg>
 );
 
+const VedaLogo = ({ size = 22 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+    {/* Left fold (black) */}
+    <path d="M5 4H10L14 18H9L5 4Z" fill="#1A1A1A" />
+    {/* Right fold (black/grey) */}
+    <path d="M14 18L19 4H14L10 18H14Z" fill="#1A1A1A" />
+    {/* Top orange accent */}
+    <circle cx="12" cy="7" r="2.5" fill="#E8470A" />
+  </svg>
+);
+
 const PieChartIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
     <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
@@ -239,7 +250,9 @@ export default function Home() {
         <div className="sidebar-top">
           {/* Logo */}
           <div className="logo-container">
-            <div className="logo-box">V</div>
+            <div className="logo-box">
+              <VedaLogo size={22} />
+            </div>
             <h1 className="logo-text">VedaAI</h1>
           </div>
 

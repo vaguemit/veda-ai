@@ -1880,3 +1880,35 @@ html, body {
   transform: translateY(-1px);
 }
 
+/* ===== EMPTY STATE ILLUSTRATION ===== */
+.empty-state-illustration {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state-create-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #1A1A1A;
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.22);
+}
+
+.empty-state-create-btn:hover {
+  background: #333;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+

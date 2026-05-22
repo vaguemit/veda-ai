@@ -2070,19 +2070,12 @@ html, body {
 }
 
 .green-check-dot {
-  width: 22px;
-  height: 22px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: #2ECC71;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
   flex-shrink: 0;
-}
-
-.green-check-dot svg {
-  stroke: white;
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.25);
 }
 
 .form-title-outer {

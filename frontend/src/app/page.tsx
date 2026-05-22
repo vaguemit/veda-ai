@@ -533,11 +533,7 @@ export default function Home() {
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', overflow: 'hidden' }}>
               <div className="list-view-header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div className="green-check-dot">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
+                  <div className="green-check-dot"></div>
                   <div className="list-view-title-container">
                     <h3 className="list-view-title" style={{ margin: 0 }}>Assignments</h3>
                     <span className="list-view-subtitle">Manage and create assignments for your classes.</span>
@@ -648,11 +644,7 @@ export default function Home() {
             <div className="create-form-page">
               {/* Outer Header with green dot */}
               <div className="form-outer-header">
-                <div className="green-check-dot">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
+                <div className="green-check-dot"></div>
                 <div>
                   <h3 className="form-title-outer">Create Assignment</h3>
                   <span className="form-subtitle-outer">Set up a new assignment for your students</span>
@@ -733,7 +725,14 @@ export default function Home() {
                       onChange={(e) => setFormDueDate(e.target.value)}
                       placeholder="DD-MM-YYYY"
                     />
-                    <Calendar size={18} className="calendar-icon-btn" />
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="calendar-icon-btn" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="3" y="4" width="18" height="18" rx="4" ry="4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                      <line x1="3" y1="9" x2="21" y2="9" stroke="currentColor" strokeWidth="2"/>
+                      <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <line x1="12" y1="13" x2="12" y2="19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <line x1="9" y1="16" x2="15" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
                   </div>
                 </div>
 

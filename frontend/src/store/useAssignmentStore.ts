@@ -145,11 +145,9 @@ export const useAssignmentStore = create<AssignmentState>((set, get) => ({
       const res = await fetch(`${API_URL}/api/assignments`);
       if (!res.ok) throw new Error('Failed to fetch assignments');
       const data = await res.json();
-      // Always keep the current view — homepage (no_assignments) stays as homepage.
-      // Only switch to no_assignments if there are genuinely no assignments.
       set({ 
         assignments: data,
-        currentView: data.length === 0 ? 'no_assignments' : get().currentView
+        currentView: data.length === 0 ? 'no_assignments' : (get().currentView === 'no_assignments' ? 'list' : get().currentView)
       });
     } catch (err: any) {
       set({ error: err?.message || 'Error loading assignments' });

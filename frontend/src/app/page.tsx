@@ -303,7 +303,11 @@ export default function Home() {
 
         {/* School Info Footer Card */}
         <div className="school-card">
-          <img src="/school_avatar.png" alt="School Avatar" className="school-avatar-img" />
+          <img 
+            src={currentView === 'create' ? "/john_doe_avatar.png" : "/school_avatar.png"} 
+            alt="School Avatar" 
+            className="school-avatar-img" 
+          />
           <div className="school-info">
             <h4 className="school-name">Delhi Public School</h4>
             <span className="school-location">Bokaro Steel City</span>

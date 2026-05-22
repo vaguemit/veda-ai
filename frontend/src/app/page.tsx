@@ -878,22 +878,8 @@ export default function Home() {
                         <div className="paper-questions-list">
                           {section.questions.map((q, qIdx) => (
                             <div key={qIdx} className="paper-question-item">
-                              <div className="paper-question-header-row">
-                                <span>{qIdx + 1}.</span>
-                                <div className="question-text-wrapper">
-                                  {/* Visual Difficulty Tag Badges */}
-                                  <span className={`difficulty-badge ${
-                                    q.difficulty === 'Easy' 
-                                      ? 'difficulty-easy' 
-                                      : q.difficulty === 'Moderate'
-                                      ? 'difficulty-moderate'
-                                      : 'difficulty-challenging'
-                                  }`}>
-                                    {q.difficulty}
-                                  </span>
-                                  <span>{q.text}</span>
-                                </div>
-                                <span className="question-marks">[{q.marks} Mark{q.marks > 1 ? 's' : ''}]</span>
+                              <div className="paper-question-header-row" style={{ display: 'block', fontSize: '13.5px', color: '#1A1A1A', lineHeight: '1.6', marginBottom: 4 }}>
+                                <span style={{ fontWeight: 'normal' }}>{qIdx + 1}. [{q.difficulty}] {q.text} [{q.marks} Mark{q.marks > 1 ? 's' : ''}]</span>
                               </div>
 
                               {/* Render Options for MCQ */}

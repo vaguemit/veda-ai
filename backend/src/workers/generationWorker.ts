@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import { AssignmentRepository } from '../models/AssignmentRepo';
 import { generateMockQuestionPaper } from './mockGenerator';
@@ -55,17 +56,9 @@ export async function processGenerationJob(jobId: string, data: any) {
 
     let generatedPaper: any = null;
     const apiKey = process.env.GEMINI_API_KEY;
+    const openaiApiKey = process.env.OPENAI_API_KEY;
 
-    if (apiKey && apiKey.trim() !== '') {
-      try {
-        console.log('Invoking Gemini API...');
-        const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({
-          model: 'gemini-1.5-flash',
-          generationConfig: { responseMimeType: 'application/json' }
-        });
-
-        const prompt = `You are an AI assessment generator.
+    const prompt = `You are an AI assessment generator.
 Create a structured exam question paper based on the following input parameters:
 Title/Topic: ${data.title}
 Due Date: ${data.dueDate}
@@ -111,6 +104,15 @@ Output a single JSON object strictly matching this structure:
 Ensure questions cover different difficulty levels (Easy, Moderate, Challenging) based on the marks and types.
 Return ONLY valid JSON. Do not include markdown code block ticks.`;
 
+    if (apiKey && apiKey.trim() !== '') {
+      try {
+        console.log('Invoking Gemini API...');
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({
+          model: 'gemini-1.5-flash',
+          generationConfig: { responseMimeType: 'application/json' }
+        });
+
         const result = await model.generateContent(prompt);
         const text = result.response.text();
         console.log('Gemini API response received.');
@@ -130,12 +132,34 @@ Return ONLY valid JSON. Do not include markdown code block ticks.`;
         generatedPaper = JSON.parse(cleanText);
         console.log('Successfully parsed Gemini JSON.');
       } catch (aiErr) {
-        console.warn('Gemini Generation failed. Falling back to template generation.', aiErr);
+        console.warn('Gemini Generation failed. Trying OpenAI...', aiErr);
         generatedPaper = null;
       }
     }
 
-    // 4. Fallback if Gemini key is missing or failed
+    if (!generatedPaper && openaiApiKey && openaiApiKey.trim() !== '') {
+      try {
+        console.log('Invoking OpenAI API...');
+        const openai = new OpenAI({ apiKey: openaiApiKey });
+        const completion = await openai.chat.completions.create({
+          model: 'gpt-4o-mini',
+          messages: [{ role: 'user', content: prompt }],
+          response_format: { type: 'json_object' }
+        });
+        const text = completion.choices[0].message.content;
+        console.log('OpenAI API response received.');
+
+        if (text) {
+          generatedPaper = JSON.parse(text.trim());
+          console.log('Successfully parsed OpenAI JSON.');
+        }
+      } catch (openaiErr) {
+        console.warn('OpenAI Generation failed. Falling back to template generation.', openaiErr);
+        generatedPaper = null;
+      }
+    }
+
+    // 4. Fallback if Gemini/OpenAI key is missing or failed
     if (!generatedPaper) {
       console.log('Using mock question paper generator...');
       await delay(1200); // simulate some thinking

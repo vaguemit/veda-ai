@@ -22,3 +22,9 @@ assignments_db.json
 # IDEs
 .vscode/
 .idea/
+
+# Local utility scripts
+update_*.js
+replace_*.js
+add_*.js
+

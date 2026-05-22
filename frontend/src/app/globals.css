@@ -1510,6 +1510,17 @@ html, body {
   background: #B0B0B0;
 }
 
+.fab-create-btn:active {
+  transform: translateY(0);
+}
+
+/* Hide mobile elements on desktop */
+.mobile-bottom-nav,
+.mobile-header-logo,
+.mobile-menu-btn {
+  display: none;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .sidebar {
@@ -2105,4 +2116,205 @@ html, body {
 .form-inner-subtitle {
   font-size: 12.5px;
   color: var(--text-secondary);
+}
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0;
+    gap: 0;
+    background: #D9D9D9; /* slightly darker grey on mobile */
+  }
+
+  .sidebar {
+    display: none; /* Hide desktop sidebar */
+  }
+
+  .main-content {
+    border-radius: 0;
+    padding: 16px 16px 80px 16px; /* Extra bottom padding for floating tab bar */
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .top-header {
+    border-radius: 12px; /* Less pill-shaped on mobile */
+    padding: 0 14px;
+    height: 56px;
+    margin-bottom: 24px;
+    justify-content: space-between;
+  }
+
+  /* Desktop specific elements in header hidden */
+  .header-breadcrumb {
+    display: none;
+  }
+
+  /* New mobile top header elements */
+  .mobile-header-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-logo-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-logo-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+
+  .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .profile-name {
+    display: none; /* Hide name on mobile */
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  /* Bottom Tab Bar */
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    height: 64px;
+    background: #1A1A1A;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #7E7E7E;
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .mobile-nav-item.active {
+    color: white;
+  }
+
+  .mobile-nav-item svg {
+    margin-bottom: 2px;
+  }
+
+  /* FAB Button Mobile overrides */
+  .fab-create-btn {
+    position: fixed;
+    bottom: 96px; /* Above bottom nav */
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: white;
+    color: var(--brand-primary);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    margin: 0;
+    padding: 0;
+    z-index: 150;
+  }
+
+  .fab-create-btn span {
+    display: none; /* Hide text, show only icon */
+  }
+
+  .fab-create-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Empty State Overrides for mobile */
+  .empty-state-container {
+    padding: 32px 16px;
+    min-height: auto;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .empty-state-illustration svg {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  .empty-state-title {
+    font-size: 20px;
+  }
+
+  .empty-state-desc {
+    font-size: 13.5px;
+  }
+
+  .empty-state-create-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Adjustments for lists/forms */
+  .search-input {
+    width: 100%;
+  }
+
+  .filter-search-bar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .search-input-wrapper {
+    width: 100%;
+  }
+
+  .assignment-card {
+    height: auto;
+    gap: 16px;
+  }
+
+  .card-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-menu-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

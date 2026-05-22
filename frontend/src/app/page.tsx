@@ -37,7 +37,8 @@ import {
   Book,
   Contact,
   PieChart,
-  MoreVertical
+  MoreVertical,
+  Menu
 } from 'lucide-react';
 
 // Custom SVGs matching the Figma screenshot exactly
@@ -379,6 +380,15 @@ export default function Home() {
       <section className="main-content">
         {/* Top Floating Header */}
         <header className="top-header">
+          {/* Mobile Logo */}
+          <div className="mobile-header-logo">
+            <div className="mobile-logo-box">
+              <VedaLogo size={16} />
+            </div>
+            <h1 className="mobile-logo-text">VedaAI</h1>
+          </div>
+
+          {/* Desktop Breadcrumb */}
           <div className="header-breadcrumb">
             <button 
               className="header-back-btn" 
@@ -419,8 +429,11 @@ export default function Home() {
             <div className="profile-card">
               <img src="/john_doe_avatar.png" alt="User Profile" className="profile-avatar-img" />
               <span className="profile-name">John Doe</span>
-              <ChevronDown size={14} style={{ color: 'var(--text-muted)' }} />
+              <ChevronDown size={14} style={{ color: 'var(--text-muted)' }} className="profile-name" />
             </div>
+            <button className="mobile-menu-btn">
+              <Menu size={24} />
+            </button>
           </div>
         </header>
 
@@ -1010,6 +1023,38 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* MOBILE BOTTOM NAVIGATION BAR */}
+      <nav className="mobile-bottom-nav">
+        <button 
+          className={`mobile-nav-item ${currentView === 'home' ? 'active' : ''}`}
+          onClick={() => setView('home')}
+        >
+          <HomeIcon size={22} />
+          <span>Home</span>
+        </button>
+        <button 
+          className={`mobile-nav-item ${currentView === 'list' || currentView === 'no_assignments' || currentView === 'create' || currentView === 'output' ? 'active' : ''}`}
+          onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
+        >
+          <AssignmentsIcon size={22} />
+          <span>Assignments</span>
+        </button>
+        <button 
+          className={`mobile-nav-item ${currentView === 'library' ? 'active' : ''}`}
+          onClick={() => setView('library')}
+        >
+          <PieChartIcon size={22} />
+          <span>Library</span>
+        </button>
+        <button 
+          className={`mobile-nav-item ${currentView === 'toolkit' ? 'active' : ''}`}
+          onClick={() => setView('toolkit')}
+        >
+          <Sparkles size={22} />
+          <span>AI Toolkit</span>
+        </button>
+      </nav>
     </main>
   );
 }

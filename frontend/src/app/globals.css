@@ -1817,6 +1817,16 @@ html, body {
 }
 
 /* Add Question Type pill with hidden select overlay */
+/* Desktop: counters row uses display:contents so they slot into the parent grid */
+.qconfig-counters-row {
+  display: contents;
+}
+
+/* Desktop: counter labels hidden */
+.qconfig-counter-label {
+  display: none;
+}
+
 .add-qtype-figma {
   position: relative;
   display: inline-flex;
@@ -2436,6 +2446,126 @@ html, body {
   .fab-create-btn svg {
     width: 24px;
     height: 24px;
+  }
+
+  /* ===== MOBILE CREATE FORM ===== */
+
+  /* Hide desktop form outer header — mobile uses top-header breadcrumb */
+  .form-outer-header,
+  .form-progress-bar-outer {
+    display: none;
+  }
+
+  /* Mobile "← Create Assignment" sub-header */
+  .mobile-create-subheader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .create-form-page {
+    padding: 0;
+    gap: 0;
+  }
+
+  /* Full-width card, no shadow on mobile */
+  .create-form-card {
+    border-radius: 16px;
+    padding: 20px 16px;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  /* Upload zone full width */
+  .upload-zone-large {
+    width: 100%;
+    padding: 28px 16px;
+  }
+
+  /* Due date full width */
+  .input-date {
+    width: 100%;
+  }
+
+  /* Question config: hide desktop header row labels */
+  .qconfig-header-row {
+    display: none;
+  }
+
+  /* Each question type = vertical card on mobile */
+  .qconfig-row-figma {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  /* Dropdown row: takes full width */
+  .qtype-select-wrapper {
+    width: 100%;
+  }
+
+  /* Counters row: side by side below dropdown */
+  .qconfig-row-figma .qty-counter-figma {
+    flex: 1;
+    width: auto;
+  }
+
+  /* Wrap the two counters in a row */
+  .qconfig-row-figma {
+    position: relative;
+  }
+
+  /* X button repositioned to top-right of card */
+  .qtype-x-btn-outside {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  /* Counters container — side by side */
+  .qconfig-counters-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Labels above counters */
+  .qconfig-counter-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-align: center;
+  }
+
+  /* Footer prev/next full width pill buttons */
+  .create-form-footer {
+    padding: 16px;
+    gap: 12px;
+    background: transparent;
+    border: none;
+  }
+
+  .btn-footer-prev,
+  .btn-footer-next {
+    flex: 1;
+    height: 48px;
+    font-size: 15px;
+    border-radius: 9999px;
+  }
+
+  /* Totals right-aligned */
+  .form-totals-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: 13px;
   }
 }
 

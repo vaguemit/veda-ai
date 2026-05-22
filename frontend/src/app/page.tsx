@@ -666,6 +666,14 @@ export default function Home() {
           {/* SCREEN 2: ASSIGNMENT CREATION FORM */}
           {currentView === 'create' && (
             <div className="create-form-page">
+              {/* Mobile-only "← Create Assignment" sub-header */}
+              <div className="mobile-list-subheader" style={{ marginBottom: '16px' }}>
+                <button className="mobile-back-btn" onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}>
+                  <ArrowLeft size={18} />
+                </button>
+                <span className="mobile-list-title">Create Assignment</span>
+              </div>
+
               {/* Outer Header with green dot */}
               <div className="form-outer-header">
                 <div className="green-check-dot"></div>
@@ -803,26 +811,32 @@ export default function Home() {
                           <X size={16} />
                         </button>
 
-                        {/* Questions counter */}
-                        <div className="qty-counter-figma">
-                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeQty(qConfig.type, -1)}>
-                            <Minus size={13} />
-                          </button>
-                          <span className="counter-val-figma">{qConfig.numQuestions}</span>
-                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeQty(qConfig.type, 1)}>
-                            <Plus size={13} />
-                          </button>
-                        </div>
-
-                        {/* Marks counter */}
-                        <div className="qty-counter-figma">
-                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeMarks(qConfig.type, -1)}>
-                            <Minus size={13} />
-                          </button>
-                          <span className="counter-val-figma">{qConfig.marksPerQuestion}</span>
-                          <button className="counter-btn-figma" onClick={() => updateQuestionTypeMarks(qConfig.type, 1)}>
-                            <Plus size={13} />
-                          </button>
+                        {/* Counters: side by side with labels on mobile */}
+                        <div className="qconfig-counters-row">
+                          <div style={{ flex: 1 }}>
+                            <div className="qconfig-counter-label">No. of Questions</div>
+                            <div className="qty-counter-figma" style={{ width: '100%' }}>
+                              <button className="counter-btn-figma" onClick={() => updateQuestionTypeQty(qConfig.type, -1)}>
+                                <Minus size={13} />
+                              </button>
+                              <span className="counter-val-figma">{qConfig.numQuestions}</span>
+                              <button className="counter-btn-figma" onClick={() => updateQuestionTypeQty(qConfig.type, 1)}>
+                                <Plus size={13} />
+                              </button>
+                            </div>
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <div className="qconfig-counter-label">Marks</div>
+                            <div className="qty-counter-figma" style={{ width: '100%' }}>
+                              <button className="counter-btn-figma" onClick={() => updateQuestionTypeMarks(qConfig.type, -1)}>
+                                <Minus size={13} />
+                              </button>
+                              <span className="counter-val-figma">{qConfig.marksPerQuestion}</span>
+                              <button className="counter-btn-figma" onClick={() => updateQuestionTypeMarks(qConfig.type, 1)}>
+                                <Plus size={13} />
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     ))}

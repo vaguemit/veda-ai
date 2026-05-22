@@ -860,10 +860,10 @@ export default function Home() {
                     </p>
 
                     {/* Student Info lines */}
-                    <div className="paper-student-info" style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', color: '#1A1A1A', margin: '16px 0', borderBottom: 'none', paddingBottom: 0 }}>
+                    <div className="paper-student-info" style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', color: '#1A1A1A', margin: '16px 0', border: 'none', borderRadius: 0, padding: 0 }}>
                       <div style={{ fontWeight: '600' }}>Name: ______________________</div>
-                      <div style={{ fontWeight: '600' }}>Roll Number: ______________________</div>
-                      <div style={{ fontWeight: '600' }}>Class: {selectedAssignment.paper.className} Section: ______________________</div>
+                      <div style={{ fontWeight: '600' }}>Roll Number: _______________</div>
+                      <div style={{ fontWeight: '600' }}>Class: {selectedAssignment.paper.className} Section: ________</div>
                     </div>
 
                     {/* Render Sections */}

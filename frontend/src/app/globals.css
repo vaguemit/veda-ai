@@ -2076,6 +2076,7 @@ html, body {
   background: #2ECC71;
   flex-shrink: 0;
   box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.25);
+  margin: 4px;
 }
 
 .form-title-outer {

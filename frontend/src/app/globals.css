@@ -593,7 +593,7 @@ html, body {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  min-height: 120px;
+  min-height: 150px;
   justify-content: space-between;
 }
 

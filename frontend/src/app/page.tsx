@@ -105,6 +105,7 @@ const PieChartIcon = ({ size = 20 }: { size?: number }) => (
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -113,6 +114,20 @@ export default function Home() {
       document.documentElement.removeAttribute('data-theme');
     }
   }, [isDarkMode]);
+
+  // Live elapsed timer during generation
+  useEffect(() => {
+    if (!selectedAssignment || (selectedAssignment.status !== 'processing' && selectedAssignment.status !== 'pending')) {
+      setElapsedSeconds(0);
+      return;
+    }
+    setElapsedSeconds(0);
+    const interval = setInterval(() => {
+      setElapsedSeconds(prev => prev + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [selectedAssignment?.status, selectedAssignment?._id]);
+
   const {
     currentView,
     assignments,
@@ -890,7 +905,7 @@ export default function Home() {
 
                     <div className="metadata-row" style={{ justifyContent: 'center' }}>
                       <Clock size={14} />
-                      <span>Est. time remaining: 15-30 seconds</span>
+                      <span>{elapsedSeconds < 5 ? 'Starting generation...' : `Processing for ${elapsedSeconds}s...`}</span>
                     </div>
                   </div>
                 </div>

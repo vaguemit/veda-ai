@@ -395,8 +395,6 @@ export const useAssignmentStore = create<AssignmentState>((set, get) => ({
           console.warn(e);
         }
       } else if (progressData.status === 'failed') {
-        // Find failed assignment in list and set to failed
-        const assignmentId = completedAssignment => completedAssignment?._id; 
         get().fetchAssignments(); // Refetch to align states
       }
     });

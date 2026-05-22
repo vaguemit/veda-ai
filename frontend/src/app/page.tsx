@@ -904,7 +904,7 @@ export default function Home() {
 
                     {/* Answer Key block directly on sheet */}
                     {selectedAssignment.paper.answerKey && (
-                      <div className="paper-answer-key-section" style={{ marginTop: '24px', borderTop: '1px dashed #D0D0D0', paddingTop: '16px' }}>
+                      <div className="paper-answer-key-section" style={{ marginTop: '24px' }}>
                         <h4 style={{ fontSize: '15px', color: '#1A1A1A', marginBottom: '12px', fontWeight: 'bold' }}>Answer Key:</h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#1A1A1A', lineHeight: '1.6' }}>
                           {selectedAssignment.paper.answerKey.map((item, index) => (

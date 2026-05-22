@@ -1538,7 +1538,8 @@ html, body {
 /* Hide mobile elements on desktop */
 .mobile-bottom-nav,
 .mobile-header-logo,
-.mobile-menu-btn {
+.mobile-menu-btn,
+.mobile-list-subheader {
   display: none;
 }
 
@@ -2167,6 +2168,39 @@ html, body {
     display: none;
   }
 
+  /* Mobile "← Assignments" sub-header */
+  .mobile-list-subheader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .mobile-back-btn {
+    position: absolute;
+    left: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+  }
+
+  .mobile-list-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+  }
+
+  /* Hide desktop list-view-header on mobile */
+  .list-view-header {
+    display: none;
+  }
+
   /* New mobile top header elements */
   .mobile-header-logo {
     display: flex;
@@ -2304,35 +2338,103 @@ html, body {
     max-width: 300px;
   }
 
-  /* Adjustments for lists/forms */
-  .search-input {
-    width: 100%;
+  /* Mobile filter bar: side-by-side like Figma */
+  .filter-search-bar {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 10px 14px;
+    border: 1px solid #E8E8E8;
   }
 
-  .filter-search-bar {
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
+  .filter-group {
+    flex-shrink: 0;
+    border-right: 1px solid #E0E0E0;
+    padding-right: 12px;
+    margin-right: 12px;
   }
 
   .search-input-wrapper {
+    flex: 1;
+  }
+
+  .search-input {
+    border: none;
+    background: transparent;
+    padding: 0;
     width: 100%;
+    font-size: 14px;
   }
 
+  .search-input:focus {
+    box-shadow: none;
+    border-color: transparent;
+  }
+
+  /* 1-column grid on mobile */
+  .assignments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Card layout on mobile */
   .assignment-card {
-    height: auto;
-    gap: 16px;
+    min-height: auto;
+    padding: 16px;
+    border-radius: 16px;
   }
 
+  /* Keep top row horizontal: title left, dots right */
   .card-top-row {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
   }
 
   .card-menu-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: static;
+    flex-shrink: 0;
+  }
+
+  /* No divider on card bottom row on mobile */
+  .card-bottom-row {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 14px;
+    gap: 8px;
+  }
+
+  /* FAB: white circle with orange +, bottom RIGHT */
+  .fab-create-btn {
+    position: fixed;
+    bottom: 88px;
+    right: 20px;
+    left: auto;
+    transform: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: white;
+    color: var(--brand-primary);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    padding: 0;
+    justify-content: center;
+    z-index: 150;
+  }
+
+  .fab-create-btn:hover {
+    transform: none;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  }
+
+  .fab-create-btn span {
+    display: none;
+  }
+
+  .fab-create-btn svg {
+    width: 24px;
+    height: 24px;
   }
 }
 

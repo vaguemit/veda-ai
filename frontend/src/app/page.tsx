@@ -534,6 +534,15 @@ export default function Home() {
           {/* SCREEN 1: ASSIGNMENTS LIST VIEW */}
           {currentView === 'list' && (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
+              {/* Mobile-only sub-header: ← Assignments (centered) */}
+              <div className="mobile-list-subheader">
+                <button className="mobile-back-btn" onClick={() => setView('no_assignments')}>
+                  <ArrowLeft size={18} />
+                </button>
+                <span className="mobile-list-title">Assignments</span>
+              </div>
+
+              {/* Desktop header */}
               <div className="list-view-header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div className="green-check-dot"></div>

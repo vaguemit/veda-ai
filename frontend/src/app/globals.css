@@ -1624,12 +1624,16 @@ html, body {
 
 /* Figma question config rows */
 .qconfig-header-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 300px 110px 110px;
+  gap: 20px;
   padding: 0 4px 10px;
   border-bottom: 1px solid var(--border-light);
   margin-bottom: 4px;
+}
+
+.qconfig-header-row .text-center {
+  text-align: center;
 }
 
 .qconfig-rows {
@@ -1640,14 +1644,14 @@ html, body {
 }
 
 .qconfig-row-figma {
-  display: flex;
+  display: grid;
+  grid-template-columns: 300px 110px 110px;
+  gap: 20px;
   align-items: center;
-  gap: 12px;
 }
 
 /* Dropdown wrapper with X button */
 .qtype-select-wrapper {
-  flex: 1;
   display: flex;
   align-items: center;
   gap: 0;
@@ -1695,10 +1699,12 @@ html, body {
   display: flex;
   align-items: center;
   border: 1.5px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 9999px; /* Pill-shaped container */
   overflow: hidden;
   width: 110px;
+  height: 38px;
   flex-shrink: 0;
+  background: #F4F4F6; /* Light gray background for outer container */
 }
 
 .counter-btn-figma {
@@ -1708,27 +1714,30 @@ html, body {
   align-items: center;
   justify-content: center;
   border: none;
-  background: var(--bg-hover);
+  background: #F4F4F6; /* Light gray background for buttons */
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   transition: var(--transition);
   flex-shrink: 0;
 }
 
 .counter-btn-figma:hover {
   background: var(--border);
-  color: var(--text-primary);
 }
 
 .counter-val-figma {
   flex: 1;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700; /* Bold text matching user screenshot */
   color: var(--text-primary);
+  background: var(--white); /* White background for the center value */
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  padding: 8px 4px;
 }
 
 /* Add Question Type pill with hidden select overlay */

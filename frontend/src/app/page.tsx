@@ -30,7 +30,10 @@ import {
   ChevronDown,
   X,
   Sparkles,
-  AlertCircle
+  AlertCircle,
+  ArrowLeft,
+  LayoutGrid,
+  Bell
 } from 'lucide-react';
 
 export default function Home() {
@@ -189,7 +192,7 @@ export default function Home() {
             <h1 className="logo-text">VedaAI</h1>
           </div>
 
-          {/* AI Teacher Tool button */}
+          {/* Create Assignment button */}
           <button 
             className="toolkit-btn" 
             onClick={() => {
@@ -198,7 +201,7 @@ export default function Home() {
             }}
           >
             <Sparkles size={16} />
-            <span>AI Teacher's Toolkit</span>
+            <span>Create Assignment</span>
           </button>
 
           {/* Menu Items */}
@@ -243,7 +246,7 @@ export default function Home() {
 
         {/* School Info Footer Card */}
         <div className="school-card">
-          <div className="school-avatar">🏫</div>
+          <img src="/school_avatar.png" alt="School Avatar" className="school-avatar-img" />
           <div className="school-info">
             <h4 className="school-name">Delhi Public School</h4>
             <span className="school-location">Bokaro Steel City</span>
@@ -255,32 +258,26 @@ export default function Home() {
       <section className="main-content">
         {/* Top Floating Header */}
         <header className="top-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {currentView === 'create' && (
-              <button className="back-btn" onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}>
-                ← Assignment
-              </button>
-            )}
-            {currentView === 'output' && (
-              <button className="back-btn" onClick={() => setView('list')}>
-                ← Assignment
-              </button>
-            )}
-            {(currentView === 'list' || currentView === 'no_assignments') && (
-              <>
-                <span style={{ fontSize: '18px', color: 'var(--text-muted)' }}>&#8592;</span>
-                <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text-secondary)' }}>Assignment</span>
-              </>
-            )}
+          <div className="header-breadcrumb">
+            <button 
+              className="header-back-btn" 
+              onClick={() => {
+                setView(assignments.length === 0 ? 'no_assignments' : 'list');
+              }}
+            >
+              <ArrowLeft size={16} />
+            </button>
+            <LayoutGrid size={16} className="header-grid-icon" />
+            <span className="header-breadcrumb-text">Assignment</span>
           </div>
 
           <div className="profile-section">
             <div className="notification-bell">
               <span className="notification-badge"></span>
-              🔔
+              <Bell size={18} style={{ color: 'var(--text-primary)' }} />
             </div>
             <div className="profile-card">
-              <div className="profile-avatar">👨‍🏫</div>
+              <img src="/john_doe_avatar.png" alt="User Profile" className="profile-avatar-img" />
               <span className="profile-name">John Doe</span>
               <ChevronDown size={14} style={{ color: 'var(--text-muted)' }} />
             </div>

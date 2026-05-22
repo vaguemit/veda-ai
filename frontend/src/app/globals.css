@@ -118,8 +118,8 @@ html, body {
 }
 
 .logo-box {
-  width: 52px;
-  height: 52px;
+  width: 49px;
+  height: 49px;
   border-radius: 14px;
   overflow: hidden;
   display: flex;
@@ -2230,8 +2230,8 @@ html, body {
   }
 
   .mobile-logo-box {
-    width: 42px;
-    height: 42px;
+    width: 39px;
+    height: 39px;
     border-radius: 12px;
     overflow: hidden;
     display: flex;

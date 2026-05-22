@@ -1145,6 +1145,7 @@ html, body {
   max-width: none;
   width: 100%;
   margin: 0 auto;
+  flex-shrink: 0;
 }
 
 .paper-school-header {
@@ -1937,6 +1938,7 @@ html, body {
   position: relative;
   width: 100%;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .ai-output-banner {

@@ -135,6 +135,8 @@ html, body {
   color: var(--text-primary);
   letter-spacing: -0.3px;
   line-height: 1;
+  position: relative;
+  top: -3px;
 }
 
 /* AI Toolkit button (featured CTA) - Figma style black pill with orange border */
@@ -2248,6 +2250,8 @@ html, body {
     color: var(--text-primary);
     letter-spacing: -0.3px;
     line-height: 1;
+    position: relative;
+    top: -2px;
   }
 
   .mobile-header-right {

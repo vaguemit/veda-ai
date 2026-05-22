@@ -1096,7 +1096,6 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Realistic printable paper sheet */
 .paper-sheet {
   background: var(--white);
   border: 1px solid var(--border);
@@ -1105,7 +1104,6 @@ html, body {
   padding: 40px 44px;
   max-width: 820px;
   margin: 0 auto;
-  font-family: 'Times New Roman', Times, serif;
 }
 
 .paper-school-header {

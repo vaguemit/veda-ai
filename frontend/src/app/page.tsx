@@ -333,7 +333,7 @@ export default function Home() {
           {/* Logo */}
           <div className="logo-container">
             <div className="logo-box">
-              <VedaLogo size={22} />
+              <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: '20px', fontFamily: 'Inter, sans-serif', lineHeight: 1, letterSpacing: '-1px', textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>V</span>
             </div>
             <h1 className="logo-text">VedaAI</h1>
           </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import Tesseract from 'tesseract.js';
 import { 
   useAssignmentStore, 
   IAssignment, 
@@ -195,27 +196,55 @@ export default function Home() {
     }
   }, [assignments, selectedAssignment, setSelectedAssignment]);
 
-  // Handle local text file reading
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const [isExtractingText, setIsExtractingText] = useState(false);
+  const [extractionProgress, setExtractionProgress] = useState(0);
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const text = event.target?.result as string;
-      // Store filename and content text
-      setFormFile(file.name, text || `Document Name: ${file.name}`);
-    };
-
-    if (file.type === 'text/plain') {
+  // Helper to process uploaded file (text or image)
+  const processUploadedFile = async (file: File) => {
+    if (file.type.startsWith('image/')) {
+      try {
+        setIsExtractingText(true);
+        setExtractionProgress(0);
+        
+        // Use Tesseract to perform OCR directly in the browser
+        const result = await Tesseract.recognize(file, 'eng', {
+          logger: m => {
+            if (m.status === 'recognizing text') {
+              setExtractionProgress(Math.round(m.progress * 100));
+            }
+          }
+        });
+        
+        const extractedText = result.data.text;
+        setFormFile(file.name, extractedText || `[No text found in image]`);
+      } catch (err) {
+        console.error("OCR Error:", err);
+        setFormFile(file.name, `[Error extracting text from image]`);
+      } finally {
+        setIsExtractingText(false);
+        setExtractionProgress(0);
+      }
+    } else if (file.type === 'text/plain') {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const text = event.target?.result as string;
+        setFormFile(file.name, text || `Document Name: ${file.name}`);
+      };
       reader.readAsText(file);
     } else {
-      // Mock parsing for non-text files in client env (standard PDF metadata tag)
+      // Mock parsing for non-text/non-image files in client env
       setFormFile(
         file.name, 
         `[Parsed Document Meta]\nFilename: ${file.name}\nSize: ${Math.round(file.size / 1024)} KB\nType: ${file.type}\nUploaded on: ${new Date().toLocaleDateString()}`
       );
     }
+  };
+
+  // Handle local text file reading
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    processUploadedFile(file);
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -232,21 +261,7 @@ export default function Home() {
     setDragOver(false);
     const file = e.dataTransfer.files?.[0];
     if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const text = event.target?.result as string;
-      setFormFile(file.name, text || `Document Name: ${file.name}`);
-    };
-
-    if (file.type === 'text/plain') {
-      reader.readAsText(file);
-    } else {
-      setFormFile(
-        file.name, 
-        `[Parsed Document Meta]\nFilename: ${file.name}\nSize: ${Math.round(file.size / 1024)} KB\nType: ${file.type}`
-      );
-    }
+    processUploadedFile(file);
   };
 
   // Triggers quick default template for text-area instruction
@@ -649,7 +664,13 @@ export default function Home() {
                       onChange={handleFileChange}
                       accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png"
                     />
-                    {formFileName ? (
+                    {isExtractingText ? (
+                      <div className="flex flex-col items-center justify-center gap-2" style={{ padding: '20px' }}>
+                        <RefreshCw size={28} className="text-brand-primary" style={{ animation: 'spin 1.5s linear infinite', color: 'var(--brand-primary)' }} />
+                        <p className="upload-text-primary" style={{ marginTop: '8px' }}>Extracting text from image...</p>
+                        <p className="upload-text-secondary">{extractionProgress}% complete</p>
+                      </div>
+                    ) : formFileName ? (
                       <div className="file-pill-large" onClick={e => e.stopPropagation()}>
                         <FileText size={18} />
                         <span>{formFileName}</span>

@@ -808,31 +808,21 @@ export default function Home() {
                 <>
                   {/* Dark AI banner matching Figma */}
                   <div className="ai-output-banner">
-                    <div className="ai-banner-text">
-                      <Sparkles size={16} style={{ flexShrink: 0, marginTop: 2 }} />
-                      <span>
-                        Here is your AI-generated question paper for <strong>{selectedAssignment.title}</strong>. 
-                        Review the paper below and download as PDF when ready.
-                      </span>
+                    <div className="ai-banner-text" style={{ fontSize: '15px', fontWeight: '500', color: '#FFFFFF' }}>
+                      Certainly, Lakshya! Here are customized Question Paper for your CBSE Grade 8 Science classes on the NCERT chapters:
                     </div>
                     <div className="ai-banner-actions">
-                      <button
-                        className="btn-banner-regen"
-                        onClick={() => {
-                          if (confirm('Regenerate this assignment? Current questions will be replaced.')) {
-                            regenerateAssignment(selectedAssignment._id);
-                          }
-                        }}
-                      >
-                        <RefreshCw size={14} />
-                        <span>Regenerate</span>
-                      </button>
                       <a
                         href={`http://localhost:5000/api/assignments/${selectedAssignment._id}/pdf`}
                         download
                         className="btn-banner-pdf"
+                        style={{ borderRadius: '24px', padding: '10px 20px' }}
                       >
-                        <Download size={14} />
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 6 }}>
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                          <polyline points="7 10 12 15 17 10" />
+                          <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
                         <span>Download as PDF</span>
                       </a>
                     </div>

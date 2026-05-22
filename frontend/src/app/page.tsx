@@ -405,36 +405,24 @@ export default function Home() {
 
           {/* Desktop Breadcrumb */}
           <div className="header-breadcrumb">
-            <button 
-              className="header-back-btn" 
-              onClick={() => {
-                setView(assignments.length === 0 ? 'no_assignments' : 'list');
-              }}
-            >
-              <ArrowLeft size={16} />
-            </button>
-            {currentView === 'output' ? (
-              <span 
-                className="header-breadcrumb-text" 
-                style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px' }} 
-                onClick={() => {
-                  resetForm();
-                  setView('create');
-                }}
-              >
-                <Sparkles size={14} style={{ color: 'var(--text-secondary)' }} />
-                Create New
-              </span>
-            ) : (
-              <span 
-                className="header-breadcrumb-text"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-              >
-                <LayoutGrid size={16} style={{ color: 'var(--text-secondary)' }} />
-                Assignment
-              </span>
-            )}
-          </div>
+              {currentView === 'create' || currentView === 'output' ? (
+                <button 
+                  className="breadcrumb-back-btn" 
+                  onClick={() => setView('list')}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#6B6B6B', fontSize: '13.5px', fontWeight: '500' }}
+                >
+                  <ArrowLeft size={16} />
+                  <Sparkles size={14} style={{ color: '#E8470A' }} />
+                  <span>Create New</span>
+                </button>
+              ) : (
+                <>
+                  <span className="breadcrumb-muted">VedaAI</span>
+                  <span className="breadcrumb-separator">/</span>
+                  <span className="breadcrumb-active">Assignment Creator</span>
+                </>
+              )}
+            </div>
 
           <div className="profile-section">
             <div className="notification-bell">
@@ -928,7 +916,7 @@ export default function Home() {
                         href={`http://localhost:5000/api/assignments/${selectedAssignment._id}/pdf`}
                         download
                         className="btn-banner-pdf"
-                        style={{ borderRadius: '24px', padding: '10px 20px' }}
+                        style={{ borderRadius: '999px', padding: '10px 20px', background: 'white', color: '#333333', fontWeight: '500' }}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 6 }}>
                           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

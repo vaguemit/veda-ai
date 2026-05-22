@@ -1139,10 +1139,11 @@ html, body {
 .paper-sheet {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 20px 20px 0 0;
   box-shadow: var(--shadow-md);
   padding: 40px 44px;
-  max-width: 820px;
+  max-width: none;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -1929,12 +1930,13 @@ html, body {
 .output-view-container {
   display: flex;
   flex-direction: column;
-  background: #404149;
+  background: #333333;
   border-radius: 20px;
-  padding: 24px;
-  gap: 20px;
+  padding: 24px 24px 0 24px;
+  gap: 24px;
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .ai-output-banner {

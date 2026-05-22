@@ -528,6 +528,17 @@ export default function Home() {
                 <Plus size={18} />
                 <span>Create Your First Assignment</span>
               </button>
+
+              {/* Mobile FAB — fixed circle plus button */}
+              <button
+                className="fab-create-btn"
+                onClick={() => {
+                  resetForm();
+                  setView('create');
+                }}
+              >
+                <Plus size={22} />
+              </button>
             </div>
           )}
 

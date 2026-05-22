@@ -354,7 +354,11 @@ export default function Home() {
                 Create New
               </span>
             ) : (
-              <span className="header-breadcrumb-text">
+              <span 
+                className="header-breadcrumb-text"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+              >
+                <LayoutGrid size={16} style={{ color: 'var(--text-secondary)' }} />
                 Assignment
               </span>
             )}

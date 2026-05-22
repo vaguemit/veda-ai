@@ -892,36 +892,21 @@ export default function Home() {
                     <div className="paper-end-line">
                       End of Question Paper
                     </div>
-                  </div>
 
-                  {/* Toggle Show Answer Key button */}
-                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-                    <button 
-                      className="btn-secondary" 
-                      onClick={() => setShowAnswerKey(!showAnswerKey)}
-                    >
-                      {showAnswerKey ? 'Hide Answer Key' : 'Reveal Answer Key'}
-                    </button>
-                  </div>
-
-                  {/* Answer Key block */}
-                  {showAnswerKey && selectedAssignment.paper.answerKey && (
-                    <div className="answer-key-box">
-                      <h4 className="answer-key-title">Answer Key & Explanations</h4>
-                      <div className="answer-key-list">
-                        {selectedAssignment.paper.answerKey.map((item, index) => (
-                          <div key={index} className="answer-key-item">
-                            <span className="answer-key-question">
-                              {item.sectionTitle} - Question {item.questionIndex}: "{item.questionText}"
-                            </span>
-                            <p className="answer-key-solution">
-                              <strong>Correct answer/steps:</strong> {item.answer}
-                            </p>
-                          </div>
-                        ))}
+                    {/* Answer Key block directly on sheet */}
+                    {selectedAssignment.paper.answerKey && (
+                      <div className="paper-answer-key-section" style={{ marginTop: '24px', borderTop: '1px dashed #D0D0D0', paddingTop: '16px' }}>
+                        <h4 style={{ fontSize: '15px', color: '#1A1A1A', marginBottom: '12px', fontWeight: 'bold' }}>Answer Key:</h4>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#1A1A1A', lineHeight: '1.6' }}>
+                          {selectedAssignment.paper.answerKey.map((item, index) => (
+                            <div key={index}>
+                              <span>{index + 1}. {item.answer}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </>
               )}
             </div>

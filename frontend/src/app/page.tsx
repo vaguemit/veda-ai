@@ -512,7 +512,7 @@ export default function Home() {
 
           {/* SCREEN 1: ASSIGNMENTS LIST VIEW */}
           {currentView === 'list' && (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', overflow: 'hidden' }}>
               <div className="list-view-header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div className="green-check-dot">

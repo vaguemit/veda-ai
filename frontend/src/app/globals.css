@@ -129,7 +129,7 @@ html, body {
 }
 
 .logo-text {
-  font-size: 19px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -1px;
@@ -2241,7 +2241,7 @@ html, body {
   }
 
   .mobile-logo-text {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 800;
     color: var(--text-primary);
     letter-spacing: -0.5px;

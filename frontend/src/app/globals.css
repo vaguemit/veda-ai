@@ -127,7 +127,6 @@ html, body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transform: translateY(4px);
 }
 
 .logo-text {
@@ -2241,7 +2240,6 @@ html, body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transform: translateY(2px);
   }
 
   .mobile-logo-text {

@@ -1625,8 +1625,8 @@ html, body {
 /* Figma question config rows */
 .qconfig-header-row {
   display: grid;
-  grid-template-columns: 300px 110px 110px;
-  gap: 20px;
+  grid-template-columns: 280px 32px 110px 110px;
+  gap: 16px;
   padding: 0 4px 10px;
   border-bottom: 1px solid var(--border-light);
   margin-bottom: 4px;
@@ -1645,8 +1645,8 @@ html, body {
 
 .qconfig-row-figma {
   display: grid;
-  grid-template-columns: 300px 110px 110px;
-  gap: 20px;
+  grid-template-columns: 280px 32px 110px 110px;
+  gap: 16px;
   align-items: center;
 }
 
@@ -1672,6 +1672,25 @@ html, body {
   outline: none;
   cursor: pointer;
   appearance: auto;
+}
+
+.qtype-x-btn-outside {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: var(--transition);
+  border-radius: 50%;
+}
+
+.qtype-x-btn-outside:hover {
+  background: var(--bg-hover);
+  color: var(--status-error);
 }
 
 .qtype-x-btn {

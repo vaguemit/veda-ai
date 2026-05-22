@@ -2528,20 +2528,100 @@ html, body {
     right: 10px;
   }
 
-  /* Counters container — side by side */
-  .qconfig-counters-row {
+  /* ── Question type card: white card, big radius ── */
+  .qconfig-row-figma {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 18px 18px;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: relative;
+  }
+
+  /* Top row: type text + chevron + X */
+  .qtype-select-wrapper {
+    border: none;
+    background: transparent;
+    overflow: visible;
+    width: 100%;
+    padding: 0;
+  }
+
+  .qtype-select-dropdown {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding: 0;
+    background: transparent;
+    border: none;
     width: 100%;
   }
 
-  /* Labels above counters */
+  /* X button: static, pushed to right via flex */
+  .qtype-x-btn-outside {
+    position: static;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: var(--text-primary);
+    font-size: 18px;
+  }
+
+  /* Grey pill wrapping both counter sections */
+  .qconfig-counters-row {
+    display: flex;
+    gap: 8px;
+    background: #EFEFEF;
+    border-radius: 18px;
+    padding: 14px 12px;
+    width: 100%;
+  }
+
+  /* Each half */
+  .qconfig-counters-row > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Labels above each counter */
   .qconfig-counter-label {
-    font-size: 11px;
+    display: block;
+    font-size: 13px;
     font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
+    color: #444444;
     text-align: center;
+  }
+
+  /* White pill counter inside grey area */
+  .qconfig-counters-row .qty-counter-figma {
+    background: #FFFFFF;
+    border: none;
+    border-radius: 9999px;
+    width: 100%;
+    height: 44px;
+    box-shadow: none;
+  }
+
+  .qconfig-counters-row .counter-btn-figma {
+    background: transparent;
+    width: 38px;
+    height: 44px;
+    font-size: 20px;
+    color: #1A1A1A;
+  }
+
+  .qconfig-counters-row .counter-val-figma {
+    font-size: 18px;
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    height: 44px;
   }
 
   /* Footer prev/next full width pill buttons */

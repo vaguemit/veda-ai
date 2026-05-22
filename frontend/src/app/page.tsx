@@ -581,10 +581,9 @@ export default function Home() {
                 {/* Question Types Configurator - Figma style */}
                 <div className="form-group">
                   <div className="qconfig-header-row">
-                    <span className="form-label" style={{ flex: 1 }}>Question Type</span>
-                    <span className="form-label" style={{ width: 130, textAlign: 'center' }}>No. of Questions</span>
-                    <span className="form-label" style={{ width: 100, textAlign: 'center' }}>Marks</span>
-                    <span style={{ width: 32 }}></span>
+                    <span className="form-label">Question Type</span>
+                    <span className="form-label text-center">No. of Questions</span>
+                    <span className="form-label text-center">Marks</span>
                   </div>
 
                   <div className="qconfig-rows">

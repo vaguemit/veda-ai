@@ -838,8 +838,10 @@ html, body {
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-muted);
+  color: #1A1A1A;
   pointer-events: none;
+  display: block;
+  flex-shrink: 0;
 }
 
 /* Upload zone */

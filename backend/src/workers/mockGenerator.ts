@@ -1,7 +1,19 @@
 import { IQuestionPaper, ISection, IQuestion, IAnswerKeyItem } from '../models/Assignment';
 
+interface IQuestionDatabase {
+  subject: string;
+  className: string;
+  schoolName: string;
+  timeAllowed: string;
+  mcq: { text: string; difficulty: string; options: string[] }[];
+  short: { text: string; difficulty: string }[];
+  numerical: { text: string; difficulty: string }[];
+  diagram: { text: string; difficulty: string }[];
+  answers: Record<string, string>;
+}
+
 // Pre-defined question databases for realistic subject generation
-const ELECTRICITY_QUESTIONS = {
+const ELECTRICITY_QUESTIONS: IQuestionDatabase = {
   subject: 'Science (Physics & Chemistry)',
   className: 'Grade 8th',
   schoolName: 'Delhi Public School, Bokaro Steel City',
@@ -46,7 +58,7 @@ const ELECTRICITY_QUESTIONS = {
   }
 };
 
-const MATH_QUESTIONS = {
+const MATH_QUESTIONS: IQuestionDatabase = {
   subject: 'Mathematics (Algebra & Geometry)',
   className: 'Grade 7th',
   schoolName: 'Delhi Public School, Bokaro Steel City',
@@ -81,7 +93,7 @@ const MATH_QUESTIONS = {
   }
 };
 
-const GENERIC_QUESTIONS = {
+const GENERIC_QUESTIONS: IQuestionDatabase = {
   subject: 'General Knowledge & Reasoning',
   className: 'Grade 8th',
   schoolName: 'Veda AI Assessment Academy',

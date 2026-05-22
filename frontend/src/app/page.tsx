@@ -333,7 +333,7 @@ export default function Home() {
           {/* Logo */}
           <div className="logo-container">
             <div className="logo-box">
-              <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: '20px', fontFamily: 'Inter, sans-serif', lineHeight: 1, letterSpacing: '-1px', textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>V</span>
+              <img src="/veda_logo.png" alt="VedaAI" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
             </div>
             <h1 className="logo-text">VedaAI</h1>
           </div>
@@ -430,7 +430,7 @@ export default function Home() {
           {/* Mobile Logo */}
           <div className="mobile-header-logo">
             <div className="mobile-logo-box">
-              <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: '18px', fontFamily: 'Inter, sans-serif', lineHeight: 1, letterSpacing: '-1px' }}>V</span>
+              <img src="/veda_logo.png" alt="VedaAI" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
             </div>
             <h1 className="mobile-logo-text">VedaAI</h1>
           </div>

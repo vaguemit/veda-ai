@@ -759,7 +759,7 @@ export default function Home() {
 
           {/* SCREEN 3: EXAM PAPER OUTPUT VIEW */}
           {currentView === 'output' && selectedAssignment && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, position: 'relative' }}>
+            <div className={selectedAssignment.status === 'completed' ? "output-view-container" : ""} style={selectedAssignment.status !== 'completed' ? { display: 'flex', flexDirection: 'column', gap: 16, position: 'relative' } : undefined}>
 
               {/* REALTIME WS GENERATION PROGRESS LOADER OVERLAY */}
               {(selectedAssignment.status === 'processing' || selectedAssignment.status === 'pending') && (

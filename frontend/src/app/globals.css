@@ -1880,13 +1880,23 @@ html, body {
   transform: none;
 }
 
-/* ===== AI OUTPUT BANNER (Figma dark banner) ===== */
-.ai-output-banner {
-  background: #1A1A1A;
-  border-radius: var(--radius-lg);
-  padding: 18px 22px;
+/* ===== AI OUTPUT CONTAINER & BANNER ===== */
+.output-view-container {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  background: #404149;
+  border-radius: 20px;
+  padding: 24px;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.ai-output-banner {
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;

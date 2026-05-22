@@ -130,13 +130,11 @@ html, body {
 }
 
 .logo-text {
-  font-size: 19px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 800;
   color: var(--text-primary);
-  letter-spacing: -0.3px;
+  letter-spacing: -1px;
   line-height: 1;
-  position: relative;
-  top: -5px;
 }
 
 /* AI Toolkit button (featured CTA) - Figma style black pill with orange border */
@@ -2245,13 +2243,11 @@ html, body {
   }
 
   .mobile-logo-text {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     color: var(--text-primary);
-    letter-spacing: -0.3px;
+    letter-spacing: -0.5px;
     line-height: 1;
-    position: relative;
-    top: -4px;
   }
 
   .mobile-header-right {

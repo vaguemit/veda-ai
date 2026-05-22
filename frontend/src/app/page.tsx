@@ -179,8 +179,11 @@ export default function Home() {
     initSocket();
     fetchAssignments();
 
-    const handleDocumentClick = () => {
-      setActiveDropdownId(null);
+    const handleDocumentClick = (e: MouseEvent) => {
+      // Only close if the click is outside a card-menu-wrapper
+      if (!(e.target as Element).closest('.card-menu-wrapper')) {
+        setActiveDropdownId(null);
+      }
     };
     document.addEventListener('click', handleDocumentClick);
 

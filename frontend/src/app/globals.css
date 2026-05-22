@@ -2209,13 +2209,14 @@ html, body {
   }
 
   .mobile-logo-box {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    background: #1A1A1A;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #2A2A2A;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   .mobile-logo-text {

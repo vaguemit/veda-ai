@@ -430,7 +430,7 @@ export default function Home() {
           {/* Mobile Logo */}
           <div className="mobile-header-logo">
             <div className="mobile-logo-box">
-              <VedaLogo size={16} />
+              <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: '18px', fontFamily: 'Inter, sans-serif', lineHeight: 1, letterSpacing: '-1px' }}>V</span>
             </div>
             <h1 className="mobile-logo-text">VedaAI</h1>
           </div>

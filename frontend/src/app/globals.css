@@ -1108,9 +1108,7 @@ html, body {
 
 .paper-school-header {
   text-align: center;
-  margin-bottom: 14px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid #333;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1140,8 +1138,7 @@ html, body {
 
 .paper-divider {
   border: none;
-  border-top: 1px solid #555;
-  margin: 10px 0;
+  margin: 16px 0;
 }
 
 .paper-instructions {
@@ -1298,9 +1295,7 @@ html, body {
 
 .paper-end-line {
   text-align: center;
-  margin-top: 30px;
-  padding-top: 16px;
-  border-top: 2px solid #333;
+  margin-top: 36px;
   font-size: 13px;
   font-weight: 700;
   color: #333;

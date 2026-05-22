@@ -39,6 +39,54 @@ import {
   PieChart
 } from 'lucide-react';
 
+// Custom SVGs matching the Figma screenshot exactly
+const HomeIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <rect x="3" y="3" width="7" height="7" rx="1.5" />
+    <rect x="14" y="3" width="7" height="7" rx="1.5" />
+    <rect x="14" y="14" width="7" height="7" rx="1.5" />
+    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+  </svg>
+);
+
+const MyGroupsIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+    {/* Left Person (Solid Silhouette Waving) */}
+    <circle cx="8" cy="8.5" r="3" fill="currentColor" />
+    <path d="M3 19c0-2.5 2-4.5 4.5-4.5h1c1.2 0 2.2.5 3 1.2V19H3z" fill="currentColor" />
+    <path d="M4.5 14.5C3.3 13 2.5 11 3 9.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    
+    {/* Right Person (Outlined Foreground) */}
+    <circle cx="16" cy="8" r="3" stroke="currentColor" strokeWidth="2" fill="none" />
+    <path d="M12 19c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
+  </svg>
+);
+
+const AssignmentsIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    <circle cx="8" cy="13" r="1.2" fill="currentColor" stroke="none" />
+    <line x1="11" y1="13" x2="16" y2="13" />
+    <circle cx="8" cy="17" r="1.2" fill="currentColor" stroke="none" />
+    <line x1="11" y1="17" x2="16" y2="17" />
+  </svg>
+);
+
+const BookIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+    <path d="M6 18h10" />
+  </svg>
+);
+
+const PieChartIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+    <path d="M22 12A10 10 0 0 0 12 2v10z" />
+  </svg>
+);
+
 export default function Home() {
   const {
     currentView,
@@ -213,29 +261,29 @@ export default function Home() {
               className={`menu-item ${currentView === 'dashboard' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
-              <LayoutGrid size={18} />
+              <HomeIcon size={20} />
               <span>Home</span>
             </button>
             <button className="menu-item">
-              <Contact size={18} />
+              <MyGroupsIcon size={20} />
               <span>My Groups</span>
             </button>
             <button 
               className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' || currentView === 'create' || currentView === 'output' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
-              <FileText size={18} />
+              <AssignmentsIcon size={20} />
               <span>Assignments</span>
               {assignments.length > 0 && (
                 <span className="assignments-count">{assignments.length}</span>
               )}
             </button>
             <button className="menu-item">
-              <Book size={18} />
+              <BookIcon size={20} />
               <span>AI Teacher's Toolkit</span>
             </button>
             <button className="menu-item">
-              <PieChart size={18} />
+              <PieChartIcon size={20} />
               <span>My Library</span>
             </button>
           </nav>
@@ -243,7 +291,7 @@ export default function Home() {
 
         {/* Settings link */}
         <button className="menu-item" style={{ marginBottom: 6 }}>
-          <Settings size={18} />
+          <Settings size={20} />
           <span>Settings</span>
         </button>
 

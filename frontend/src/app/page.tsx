@@ -36,7 +36,8 @@ import {
   Bell,
   Book,
   Contact,
-  PieChart
+  PieChart,
+  MoreVertical
 } from 'lucide-react';
 
 // Custom SVGs matching the Figma screenshot exactly
@@ -137,18 +138,51 @@ export default function Home() {
   } = useAssignmentStore();
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeDropdownId, setActiveDropdownId] = useState<string | null>(null);
   const [showAnswerKey, setShowAnswerKey] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+ 
   // Initialize socket connection and load assignments list on mount
   useEffect(() => {
     initSocket();
     fetchAssignments();
+
+    const handleDocumentClick = () => {
+      setActiveDropdownId(null);
+    };
+    document.addEventListener('click', handleDocumentClick);
+
     return () => {
       disconnectSocket();
+      document.removeEventListener('click', handleDocumentClick);
     };
   }, []);
+
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return '20-06-2025';
+    try {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return '20-06-2025';
+      const day = String(d.getDate()).padStart(2, '0');
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const year = d.getFullYear();
+      return `${day}-${month}-${year}`;
+    } catch {
+      return '20-06-2025';
+    }
+  };
+
+  const formatDueDate = (dateStr: string) => {
+    if (!dateStr) return '21-06-2025';
+    if (dateStr.includes('-')) {
+      const parts = dateStr.split('-');
+      if (parts[0].length === 4) {
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
+      }
+    }
+    return dateStr;
+  };
 
   // Sync selected assignment with changes in store (e.g. status changes via WS)
   useEffect(() => {
@@ -480,53 +514,50 @@ export default function Home() {
                         setView('output');
                       }}
                     >
-                      <div className="card-header">
+                      {/* Top Row: Title and Three-Dot dropdown menu */}
+                      <div className="card-top-row">
                         <h4 className="card-title">{assign.title}</h4>
-                        <div 
-                          className={`status-indicator ${
-                            assign.status === 'completed' 
-                              ? 'status-completed' 
-                              : assign.status === 'processing' || assign.status === 'pending'
-                              ? 'status-processing' 
-                              : 'status-failed'
-                          }`}
-                          title={`Status: ${assign.status}`}
-                        />
+                        <div className="card-menu-wrapper" onClick={(e) => e.stopPropagation()}>
+                          <button 
+                            className="card-menu-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveDropdownId(activeDropdownId === assign._id ? null : assign._id);
+                            }}
+                          >
+                            <MoreVertical size={16} />
+                          </button>
+                          
+                          {activeDropdownId === assign._id && (
+                            <div className="card-dropdown-menu">
+                              <button 
+                                className="dropdown-item"
+                                onClick={() => {
+                                  setSelectedAssignment(assign);
+                                  setView('output');
+                                  setActiveDropdownId(null);
+                                }}
+                              >
+                                View Assignment
+                              </button>
+                              <button 
+                                className="dropdown-item delete"
+                                onClick={() => {
+                                  deleteAssignment(assign._id);
+                                  setActiveDropdownId(null);
+                                }}
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
 
-                      <div className="card-metadata">
-                        <div className="metadata-row">
-                          <Calendar size={14} />
-                          <span>Due: {assign.dueDate}</span>
-                        </div>
-                        <div className="metadata-row">
-                          <BookOpen size={14} />
-                          <span>{assign.totalQuestions} Questions</span>
-                        </div>
-                        <div className="metadata-row">
-                          <Award size={14} />
-                          <span>{assign.totalMarks} Total Marks</span>
-                        </div>
-                      </div>
-
-                      <div className="card-actions" onClick={(e) => e.stopPropagation()}>
-                        <button 
-                          className="card-action-btn"
-                          onClick={() => {
-                            setSelectedAssignment(assign);
-                            setView('output');
-                          }}
-                        >
-                          <Eye size={14} />
-                          <span>View Paper</span>
-                        </button>
-                        <button 
-                          className="card-action-btn delete"
-                          onClick={() => deleteAssignment(assign._id)}
-                        >
-                          <Trash2 size={14} />
-                          <span>Delete</span>
-                        </button>
+                      {/* Bottom Row: Assigned on and Due dates */}
+                      <div className="card-bottom-row">
+                        <span className="card-date">Assigned on : {formatDate(assign.createdAt)}</span>
+                        <span className="card-date">Due : {formatDueDate(assign.dueDate)}</span>
                       </div>
                     </div>
                   ))}

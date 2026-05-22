@@ -33,7 +33,10 @@ import {
   AlertCircle,
   ArrowLeft,
   LayoutGrid,
-  Bell
+  Bell,
+  Book,
+  Contact,
+  PieChart
 } from 'lucide-react';
 
 export default function Home() {
@@ -207,32 +210,32 @@ export default function Home() {
           {/* Menu Items */}
           <nav className="sidebar-menu">
             <button 
-              className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'dashboard' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
-              <LayoutDashboard size={18} />
+              <LayoutGrid size={18} />
               <span>Home</span>
             </button>
             <button className="menu-item">
-              <Users size={18} />
+              <Contact size={18} />
               <span>My Groups</span>
             </button>
             <button 
-              className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' || currentView === 'output' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' || currentView === 'create' || currentView === 'output' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
-              <FileCheck size={18} />
+              <FileText size={18} />
               <span>Assignments</span>
               {assignments.length > 0 && (
                 <span className="assignments-count">{assignments.length}</span>
               )}
             </button>
             <button className="menu-item">
-              <BookOpenCheck size={18} />
+              <Book size={18} />
               <span>AI Teacher's Toolkit</span>
             </button>
             <button className="menu-item">
-              <Library size={18} />
+              <PieChart size={18} />
               <span>My Library</span>
             </button>
           </nav>

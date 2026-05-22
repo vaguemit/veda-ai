@@ -258,7 +258,7 @@ export default function Home() {
           {/* Menu Items */}
           <nav className="sidebar-menu">
             <button 
-              className={`menu-item ${currentView === 'dashboard' || currentView === 'output' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'no_assignments' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
               <HomeIcon size={20} />
@@ -269,7 +269,7 @@ export default function Home() {
               <span>My Groups</span>
             </button>
             <button 
-              className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'list' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
               <AssignmentsIcon size={20} />

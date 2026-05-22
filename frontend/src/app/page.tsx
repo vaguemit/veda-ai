@@ -512,18 +512,29 @@ export default function Home() {
           {/* SCREEN 2: ASSIGNMENT CREATION FORM */}
           {currentView === 'create' && (
             <div className="create-form-page">
+              {/* Outer Header with green dot */}
+              <div className="form-outer-header">
+                <div className="green-check-dot">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="form-title-outer">Create Assignment</h3>
+                  <span className="form-subtitle-outer">Set up a new assignment for your students</span>
+                </div>
+              </div>
+
+              {/* Progress bar outside card */}
+              <div className="form-progress-bar-outer">
+                <div className="form-progress-fill"></div>
+              </div>
+
               {/* Form card */}
               <div className="create-form-card">
-                {/* Progress bar at top */}
-                <div className="form-progress-bar">
-                  <div className="form-progress-fill"></div>
-                </div>
-
-                <div className="form-header-container">
-                  <div>
-                    <h3 className="form-title">Create Assignment</h3>
-                    <span className="form-subtitle">Set up a new assignment for your students</span>
-                  </div>
+                <div className="form-inner-header">
+                  <h4 className="form-inner-title">Assignment Details</h4>
+                  <span className="form-inner-subtitle">Basic information about your assignment</span>
                 </div>
 
                 {/* Upload Zone - Large Centered (Figma style) */}

@@ -533,7 +533,8 @@ export default function Home() {
 
               {/* Progress bar outside card */}
               <div className="form-progress-bar-outer">
-                <div className="form-progress-fill"></div>
+                <div className="progress-step-segment active"></div>
+                <div className="progress-step-segment"></div>
               </div>
 
               {/* Form card */}

@@ -624,7 +624,7 @@ export default function Home() {
                     {formQuestionTypes.map((qConfig) => (
                       <div key={qConfig.type} className="qconfig-row-figma">
                         {/* Dropdown selector */}
-                        <div className="qtype-select-wrapper">
+                        <div className="qtype-select-wrapper" style={{ position: 'relative' }}>
                           <select
                             className="qtype-select-dropdown"
                             value={qConfig.type}
@@ -642,6 +642,7 @@ export default function Home() {
                                 <option key={t} value={t}>{t}</option>
                               ))}
                           </select>
+                          <ChevronDown size={16} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#6B6B6B' }} />
                         </div>
 
                         {/* X button outside */}

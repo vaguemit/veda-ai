@@ -1662,7 +1662,7 @@ html, body {
 
 .qtype-select-dropdown {
   flex: 1;
-  padding: 10px 12px;
+  padding: 10px 32px 10px 12px;
   border: none;
   background: transparent;
   font-family: inherit;
@@ -1670,7 +1670,7 @@ html, body {
   color: var(--text-primary);
   outline: none;
   cursor: pointer;
-  appearance: auto;
+  appearance: none;
 }
 
 .qtype-x-btn-outside {

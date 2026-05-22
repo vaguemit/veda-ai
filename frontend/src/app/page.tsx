@@ -115,18 +115,7 @@ export default function Home() {
     }
   }, [isDarkMode]);
 
-  // Live elapsed timer during generation
-  useEffect(() => {
-    if (!selectedAssignment || (selectedAssignment.status !== 'processing' && selectedAssignment.status !== 'pending')) {
-      setElapsedSeconds(0);
-      return;
-    }
-    setElapsedSeconds(0);
-    const interval = setInterval(() => {
-      setElapsedSeconds(prev => prev + 1);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [selectedAssignment?.status, selectedAssignment?._id]);
+
 
   const {
     currentView,
@@ -167,6 +156,20 @@ export default function Home() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdownId, setActiveDropdownId] = useState<string | null>(null);
+
+  // Live elapsed timer during generation — must be after store destructuring
+  useEffect(() => {
+    if (!selectedAssignment || (selectedAssignment.status !== 'processing' && selectedAssignment.status !== 'pending')) {
+      setElapsedSeconds(0);
+      return;
+    }
+    setElapsedSeconds(0);
+    const interval = setInterval(() => {
+      setElapsedSeconds(prev => prev + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [selectedAssignment?.status, selectedAssignment?._id]);
+
   const [showAnswerKey, setShowAnswerKey] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);

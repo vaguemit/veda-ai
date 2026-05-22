@@ -255,19 +255,22 @@ export default function Home() {
       <section className="main-content">
         {/* Top Floating Header */}
         <header className="top-header">
-          <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             {currentView === 'create' && (
               <button className="back-btn" onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}>
-                ← Back to Dashboard
+                ← Assignment
               </button>
             )}
             {currentView === 'output' && (
               <button className="back-btn" onClick={() => setView('list')}>
-                ← Back to Assignments
+                ← Assignment
               </button>
             )}
             {(currentView === 'list' || currentView === 'no_assignments') && (
-              <h2 className="logo-text" style={{ fontSize: '18px' }}>Dashboard Overview</h2>
+              <>
+                <span style={{ fontSize: '18px', color: 'var(--text-muted)' }}>&#8592;</span>
+                <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text-secondary)' }}>Assignment</span>
+              </>
             )}
           </div>
 
@@ -287,17 +290,44 @@ export default function Home() {
         {/* Sub-View Switcher inside content card */}
         <div className="content-card">
           
-          {/* SCREEN 0: NO ASSIGNMENTS YET */}
+          {/* SCREEN 0: NO ASSIGNMENTS YET (homepage) */}
           {currentView === 'no_assignments' && (
             <div className="empty-state-container">
-              <div style={{ fontSize: '80px' }}>📄</div>
+              {/* Illustrated SVG - magnifying glass with X, matching Figma */}
+              <div className="empty-state-illustration">
+                <svg width="180" height="160" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Background circle */}
+                  <circle cx="100" cy="95" r="72" fill="#EEEEF5" />
+                  {/* Document */}
+                  <rect x="62" y="34" width="76" height="96" rx="6" fill="white" stroke="#C8C8D8" strokeWidth="1.5"/>
+                  <rect x="74" y="50" width="40" height="5" rx="2.5" fill="#333" />
+                  <rect x="74" y="62" width="52" height="4" rx="2" fill="#DDDDE8" />
+                  <rect x="74" y="72" width="44" height="4" rx="2" fill="#DDDDE8" />
+                  <rect x="74" y="82" width="48" height="4" rx="2" fill="#DDDDE8" />
+                  <rect x="74" y="92" width="36" height="4" rx="2" fill="#DDDDE8" />
+                  {/* Squiggle line top left */}
+                  <path d="M52 42 Q56 36 60 42 Q64 48 68 42" stroke="#555" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                  {/* Magnifying glass */}
+                  <circle cx="118" cy="108" r="30" fill="white" stroke="#C8C8D8" strokeWidth="2"/>
+                  <circle cx="118" cy="108" r="22" fill="#EEEEF5" />
+                  {/* X inside magnifying glass */}
+                  <line x1="108" y1="98" x2="128" y2="118" stroke="#E8470A" strokeWidth="5" strokeLinecap="round"/>
+                  <line x1="128" y1="98" x2="108" y2="118" stroke="#E8470A" strokeWidth="5" strokeLinecap="round"/>
+                  {/* Handle */}
+                  <line x1="140" y1="130" x2="156" y2="148" stroke="#999" strokeWidth="6" strokeLinecap="round"/>
+                  {/* Sparkle dots */}
+                  <path d="M68 130 L70 124 L72 130 L78 132 L72 134 L70 140 L68 134 L62 132 Z" fill="#6C8EEF" opacity="0.7"/>
+                  <circle cx="152" cy="82" r="5" fill="#6C8EEF" opacity="0.6"/>
+                </svg>
+              </div>
+
               <h3 className="empty-state-title">No assignments yet</h3>
               <p className="empty-state-desc">
-                Create your first assignment to start collecting and grading student submissions. 
+                Create your first assignment to start collecting and grading student submissions.
                 You can set up rubrics, define marking criteria, and let AI assist with grading.
               </p>
-              <button 
-                className="btn-primary" 
+              <button
+                className="empty-state-create-btn"
                 onClick={() => {
                   resetForm();
                   setView('create');

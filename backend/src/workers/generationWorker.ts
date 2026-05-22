@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import OpenAI from 'openai';
+import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
 import { AssignmentRepository } from '../models/AssignmentRepo';
 import { generateMockQuestionPaper } from './mockGenerator';
@@ -57,6 +58,7 @@ export async function processGenerationJob(jobId: string, data: any) {
     let generatedPaper: any = null;
     const apiKey = process.env.GEMINI_API_KEY;
     const openaiApiKey = process.env.OPENAI_API_KEY;
+    const groqApiKey = process.env.GROQ_API_KEY;
 
     const prompt = `You are an AI assessment generator.
 Create a structured exam question paper based on the following input parameters:
@@ -132,7 +134,29 @@ Return ONLY valid JSON. Do not include markdown code block ticks.`;
         generatedPaper = JSON.parse(cleanText);
         console.log('Successfully parsed Gemini JSON.');
       } catch (aiErr) {
-        console.warn('Gemini Generation failed. Trying OpenAI...', aiErr);
+        console.warn('Gemini Generation failed. Trying Groq...', aiErr);
+        generatedPaper = null;
+      }
+    }
+
+    if (!generatedPaper && groqApiKey && groqApiKey.trim() !== '') {
+      try {
+        console.log('Invoking Groq API...');
+        const groq = new Groq({ apiKey: groqApiKey });
+        const completion = await groq.chat.completions.create({
+          messages: [{ role: 'user', content: prompt }],
+          model: 'llama-3.3-70b-versatile',
+          response_format: { type: 'json_object' }
+        });
+        const text = completion.choices[0].message.content;
+        console.log('Groq API response received.');
+
+        if (text) {
+          generatedPaper = JSON.parse(text.trim());
+          console.log('Successfully parsed Groq JSON.');
+        }
+      } catch (groqErr) {
+        console.warn('Groq Generation failed. Trying OpenAI...', groqErr);
         generatedPaper = null;
       }
     }
@@ -159,7 +183,7 @@ Return ONLY valid JSON. Do not include markdown code block ticks.`;
       }
     }
 
-    // 4. Fallback if Gemini/OpenAI key is missing or failed
+    // 4. Fallback if Gemini/Groq/OpenAI key is missing or failed
     if (!generatedPaper) {
       console.log('Using mock question paper generator...');
       await delay(1200); // simulate some thinking

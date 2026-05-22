@@ -2,6 +2,9 @@
 
 /* ===== DESIGN TOKENS ===== */
 :root {
+  --bg-workspace: #EAECEF;
+  --output-bg: #333333;
+
   /* Brand Colors */
   --brand-primary: #E8470A;
   --brand-primary-light: #FF6B35;
@@ -78,7 +81,7 @@ html, body {
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background: #EAECEF; /* Premium light grey workspace background */
+  background: var(--bg-workspace);
   padding: 16px;
   gap: 16px;
 }
@@ -2330,4 +2333,35 @@ html, body {
     top: 0;
     right: 0;
   }
+}
+
+
+/* ===== DARK MODE OVERRIDES ===== */
+[data-theme='dark'] {
+  --brand-primary: #FF7043;
+  --brand-primary-light: #FF8A65;
+  --brand-primary-dark: #F4511E;
+  
+  --bg-workspace: #121212;
+  --bg-main: #1E1E1E;
+  --bg-hover: #2D2D2D;
+  --white: #242424;
+  
+  --text-primary: #F5F5F5;
+  --text-secondary: #AAAAAA;
+  --text-muted: #777777;
+  
+  --border: #3A3A3A;
+  --border-focus: #555555;
+  
+  --output-bg: #1A1A1A;
+}
+
+[data-theme='dark'] .output-view-container {
+  background: var(--output-bg);
+}
+
+[data-theme='dark'] .btn-banner-pdf {
+  background: var(--white);
+  color: var(--text-primary);
 }

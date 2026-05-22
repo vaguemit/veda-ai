@@ -252,13 +252,13 @@ export default function Home() {
             }}
           >
             <Sparkles size={16} />
-            <span>Create Assignment</span>
+            <span>{currentView === 'output' ? "AI Teacher's Toolkit" : "Create Assignment"}</span>
           </button>
 
           {/* Menu Items */}
           <nav className="sidebar-menu">
             <button 
-              className={`menu-item ${currentView === 'dashboard' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'dashboard' || currentView === 'output' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
               <HomeIcon size={20} />
@@ -269,12 +269,15 @@ export default function Home() {
               <span>My Groups</span>
             </button>
             <button 
-              className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' || currentView === 'create' || currentView === 'output' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'list' || currentView === 'no_assignments' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
               <AssignmentsIcon size={20} />
               <span>Assignments</span>
-              {assignments.length > 0 && (
+              {currentView === 'output' && (
+                <span className="assignments-count">32</span>
+              )}
+              {currentView !== 'output' && assignments.length > 0 && (
                 <span className="assignments-count">{assignments.length}</span>
               )}
             </button>
@@ -285,6 +288,9 @@ export default function Home() {
             <button className="menu-item">
               <PieChartIcon size={20} />
               <span>My Library</span>
+              {currentView === 'create' && (
+                <span className="assignments-count">32</span>
+              )}
             </button>
           </nav>
         </div>

@@ -600,6 +600,7 @@ export default function Home() {
                 <div className="form-group">
                   <div className="qconfig-header-row">
                     <span className="form-label">Question Type</span>
+                    <span className="form-label"></span>
                     <span className="form-label text-center">No. of Questions</span>
                     <span className="form-label text-center">Marks</span>
                   </div>
@@ -626,14 +627,16 @@ export default function Home() {
                                 <option key={t} value={t}>{t}</option>
                               ))}
                           </select>
-                          <button
-                            className="qtype-x-btn"
-                            onClick={() => removeQuestionType(qConfig.type)}
-                            title="Remove"
-                          >
-                            <X size={14} />
-                          </button>
                         </div>
+
+                        {/* X button outside */}
+                        <button
+                          className="qtype-x-btn-outside"
+                          onClick={() => removeQuestionType(qConfig.type)}
+                          title="Remove"
+                        >
+                          <X size={16} />
+                        </button>
 
                         {/* Questions counter */}
                         <div className="qty-counter-figma">

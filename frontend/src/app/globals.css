@@ -160,19 +160,20 @@ html, body {
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
+  margin-top: 12px;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: var(--radius-md);
+  gap: 14px;
+  padding: 11px 16px;
+  border-radius: 12px;
   border: none;
   background: transparent;
-  color: var(--text-secondary);
-  font-size: 13.5px;
+  color: #7E7E7E;
+  font-size: 15px;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
@@ -189,12 +190,12 @@ html, body {
 
 .menu-item.active {
   background: #ECECEF;
-  color: var(--text-primary);
+  color: #1A1A1A;
   font-weight: 600;
 }
 
 .menu-item.active svg {
-  color: var(--text-primary);
+  color: #1A1A1A;
 }
 
 .menu-item:disabled {

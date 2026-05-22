@@ -1188,35 +1188,35 @@ html, body {
 }
 
 .paper-section-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 6px;
-  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 12px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .paper-section-subinfo {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
-  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+  align-items: flex-start;
 }
 
 .paper-section-type {
-  background: #F0F0F0;
-  border: 1px solid #DDD;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
-  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A1A1A;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 .paper-section-instruction {
-  font-size: 13px;
-  color: #555;
+  font-size: 12.5px;
+  color: #4B4B4B;
   font-style: italic;
 }
 

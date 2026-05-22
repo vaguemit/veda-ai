@@ -577,9 +577,6 @@ html, body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  overflow-y: auto;
-  flex: 1;
-  padding-bottom: 80px; /* space for FAB */
   align-content: start;
 }
 
@@ -808,6 +805,12 @@ html, body {
   outline: none;
   transition: var(--transition);
   width: 100%;
+}
+
+/* Hide native browser calendar icon from date input */
+.input-date::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
 
 .input-text:focus,

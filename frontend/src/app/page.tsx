@@ -530,7 +530,7 @@ export default function Home() {
 
           {/* SCREEN 1: ASSIGNMENTS LIST VIEW */}
           {currentView === 'list' && (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
               <div className="list-view-header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div className="green-check-dot"></div>
@@ -560,71 +560,72 @@ export default function Home() {
                 </div>
               </div>
 
-              {filteredAssignments.length === 0 ? (
-                <div className="empty-state-container" style={{ flexGrow: 1 }}>
-                  <p className="empty-state-desc">No assignments found matching "{searchQuery}"</p>
-                </div>
-              ) : (
-                <div className="assignments-grid">
-                  {filteredAssignments.map((assign) => (
-                    <div 
-                      key={assign._id} 
-                      className="assignment-card"
-                      onClick={() => {
-                        setSelectedAssignment(assign);
-                        setView('output');
-                      }}
-                    >
-                      {/* Top Row: Title and Three-Dot dropdown menu */}
-                      <div className="card-top-row">
-                        <h4 className="card-title">{assign.title}</h4>
-                        <div className="card-menu-wrapper" onClick={(e) => e.stopPropagation()}>
-                          <button 
-                            className="card-menu-btn"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setActiveDropdownId(activeDropdownId === assign._id ? null : assign._id);
-                            }}
-                          >
-                            <MoreVertical size={16} />
-                          </button>
-                          
-                          {activeDropdownId === assign._id && (
-                            <div className="card-dropdown-menu">
-                              <button 
-                                className="dropdown-item"
-                                onClick={() => {
-                                  setSelectedAssignment(assign);
-                                  setView('output');
-                                  setActiveDropdownId(null);
-                                }}
-                              >
-                                View Assignment
-                              </button>
-                              <button 
-                                className="dropdown-item delete"
-                                onClick={() => {
-                                  deleteAssignment(assign._id);
-                                  setActiveDropdownId(null);
-                                }}
-                              >
-                                Delete
-                              </button>
-                            </div>
-                          )}
+              <div style={{ flex: 1, overflowY: 'auto', paddingBottom: '80px' }}>
+                {filteredAssignments.length === 0 ? (
+                  <div className="empty-state-container" style={{ flexGrow: 1 }}>
+                    <p className="empty-state-desc">No assignments found matching "{searchQuery}"</p>
+                  </div>
+                ) : (
+                  <div className="assignments-grid">
+                    {filteredAssignments.map((assign) => (
+                      <div 
+                        key={assign._id} 
+                        className="assignment-card"
+                        onClick={() => {
+                          setSelectedAssignment(assign);
+                          setView('output');
+                        }}
+                      >
+                        {/* Top Row: Title and Three-Dot dropdown menu */}
+                        <div className="card-top-row">
+                          <h4 className="card-title">{assign.title}</h4>
+                          <div className="card-menu-wrapper" onClick={(e) => e.stopPropagation()}>
+                            <button 
+                              className="card-menu-btn"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveDropdownId(activeDropdownId === assign._id ? null : assign._id);
+                              }}
+                            >
+                              <MoreVertical size={16} />
+                            </button>
+                            
+                            {activeDropdownId === assign._id && (
+                              <div className="card-dropdown-menu">
+                                <button 
+                                  className="dropdown-item"
+                                  onClick={() => {
+                                    setSelectedAssignment(assign);
+                                    setView('output');
+                                    setActiveDropdownId(null);
+                                  }}
+                                >
+                                  View Assignment
+                                </button>
+                                <button 
+                                  className="dropdown-item delete"
+                                  onClick={() => {
+                                    deleteAssignment(assign._id);
+                                    setActiveDropdownId(null);
+                                  }}
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Bottom Row: Assigned on and Due dates */}
+                        <div className="card-bottom-row">
+                          <span className="card-date">Assigned on : {formatDate(assign.createdAt)}</span>
+                          <span className="card-date">Due : {formatDueDate(assign.dueDate)}</span>
                         </div>
                       </div>
-
-                      {/* Bottom Row: Assigned on and Due dates */}
-                      <div className="card-bottom-row">
-                        <span className="card-date">Assigned on : {formatDate(assign.createdAt)}</span>
-                        <span className="card-date">Due : {formatDueDate(assign.dueDate)}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
+                    ))}
+                  </div>
+                )}
+              </div>
               {/* Floating bottom create button matching Figma */}
               <button
                 className="fab-create-btn"

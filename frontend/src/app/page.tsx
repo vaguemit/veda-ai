@@ -311,12 +311,15 @@ export default function Home() {
               <HomeIcon size={20} />
               <span>Home</span>
             </button>
-            <button className="menu-item">
+            <button 
+              className={`menu-item ${currentView === 'groups' ? 'active' : ''}`}
+              onClick={() => setView('groups')}
+            >
               <MyGroupsIcon size={20} />
               <span>My Groups</span>
             </button>
             <button 
-              className={`menu-item ${currentView === 'list' ? 'active' : ''}`}
+              className={`menu-item ${currentView === 'list' || currentView === 'create' ? 'active' : ''}`}
               onClick={() => setView(assignments.length === 0 ? 'no_assignments' : 'list')}
             >
               <AssignmentsIcon size={20} />
@@ -328,11 +331,17 @@ export default function Home() {
                 <span className="assignments-count">{assignments.length}</span>
               )}
             </button>
-            <button className="menu-item">
+            <button 
+              className={`menu-item ${currentView === 'toolkit' ? 'active' : ''}`}
+              onClick={() => setView('toolkit')}
+            >
               <BookIcon size={20} />
               <span>AI Teacher's Toolkit</span>
             </button>
-            <button className="menu-item">
+            <button 
+              className={`menu-item ${currentView === 'library' ? 'active' : ''}`}
+              onClick={() => setView('library')}
+            >
               <PieChartIcon size={20} />
               <span>My Library</span>
               {currentView === 'create' && (
@@ -343,7 +352,11 @@ export default function Home() {
         </div>
 
         {/* Settings link */}
-        <button className="menu-item" style={{ marginBottom: 6 }}>
+        <button 
+          className={`menu-item ${currentView === 'settings' ? 'active' : ''}`} 
+          style={{ marginBottom: 6 }}
+          onClick={() => setView('settings')}
+        >
           <Settings size={20} />
           <span>Settings</span>
         </button>
@@ -974,6 +987,24 @@ export default function Home() {
                   </div>
                 </>
               )}
+            </div>
+          )}
+
+          {/* DUMMY VIEWS FOR SIDEBAR */}
+          {['groups', 'toolkit', 'library', 'settings'].includes(currentView) && (
+            <div className="empty-state-container" style={{ flexGrow: 1 }}>
+              <div className="empty-state-illustration" style={{ opacity: 0.5 }}>
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#C8C8D8" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                </svg>
+              </div>
+              <h3 className="empty-state-title" style={{ textTransform: 'capitalize' }}>
+                {currentView.replace('_', ' ')}
+              </h3>
+              <p className="empty-state-desc">
+                This feature is coming soon. Stay tuned!
+              </p>
             </div>
           )}
 

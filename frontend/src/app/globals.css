@@ -2593,3 +2593,81 @@ html, body {
 [data-theme='dark'] .calendar-icon-btn {
   color: #A0A0A0;
 }
+
+/* ===== MOBILE DARK MODE OVERRIDES ===== */
+@media (max-width: 768px) {
+  [data-theme='dark'] .app-container {
+    background: #0F0F0F;
+  }
+
+  [data-theme='dark'] .main-content {
+    background: #161616;
+  }
+
+  [data-theme='dark'] .top-header {
+    background: #242424;
+    border-color: #333333;
+  }
+
+  /* Mobile filter bar dark override (was hardcoded #FFFFFF) */
+  [data-theme='dark'] .filter-search-bar {
+    background: #242424;
+    border-color: #333333;
+  }
+
+  [data-theme='dark'] .filter-group {
+    border-right-color: #3A3A3A;
+  }
+
+  [data-theme='dark'] .search-input {
+    background: transparent;
+    color: #F0F0F0;
+  }
+
+  [data-theme='dark'] .search-input::placeholder {
+    color: #555555;
+  }
+
+  /* Mobile sub-header */
+  [data-theme='dark'] .mobile-list-subheader {
+    background: transparent;
+  }
+
+  [data-theme='dark'] .mobile-list-title {
+    color: #F0F0F0;
+  }
+
+  [data-theme='dark'] .mobile-back-btn {
+    color: #F0F0F0;
+  }
+
+  /* Empty state */
+  [data-theme='dark'] .empty-state-container {
+    background: transparent;
+  }
+
+  [data-theme='dark'] .empty-state-title {
+    color: #F0F0F0;
+  }
+
+  [data-theme='dark'] .empty-state-desc {
+    color: #A0A0A0;
+  }
+
+  /* FAB on mobile in dark mode stays white circle with orange + */
+  [data-theme='dark'] .fab-create-btn {
+    background: #2A2A2A;
+    color: var(--brand-primary);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  /* Mobile logo text */
+  [data-theme='dark'] .mobile-logo-text {
+    color: #F0F0F0;
+  }
+
+  /* Profile section icons */
+  [data-theme='dark'] .mobile-header-right svg {
+    color: #A0A0A0;
+  }
+}
